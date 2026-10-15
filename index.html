@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KT CodeWave | Hacker Arena & Code Labs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#05070a',
+                            card: '#0d1117',
+                            border: '#161b22',
+                            accent: '#00ff66',
+                            cyan: '#00f0ff',
+                            purple: '#7000ff',
+                            pink: '#ff0055'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['Fira Code', 'monospace'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #05070a;
+            color: #c9d1d9;
+            font-family: 'Inter', sans-serif;
+        }
+        .scanline {
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.3));
+            background-size: 100% 4px;
+        }
+        .glow-accent {
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+        .avatar-frame-dev {
+            border: 2px solid #00ff66;
+            box-shadow: 0 0 12px #00ff66;
+        }
+        .avatar-frame-hacker {
+            border: 2px solid #00f0ff;
+            box-shadow: 0 0 12px #00f0ff;
+        }
+        .avatar-frame-pro {
+            border: 2px solid #7000ff;
+            box-shadow: 0 0 12px #7000ff;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col scanline">
+
+    <!-- Top Navigation -->
+    <header class="border-b border-cyber-border bg-cyber-card/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded bg-cyber-accent/10 border border-cyber-accent flex items-center justify-center font-mono font-bold text-cyber-accent text-xl glow-accent">
+                    KT
+                </div>
+                <div>
+                    <h1 class="text-xl font-mono font-bold tracking-wider text-white">KT CodeWave<span class="text-cyber-accent">_</span></h1>
+                    <p class="text-xs text-gray-500 font-mono">Cybernetic Coding & Practice Hub</p>
+                </div>
+            </div>
+
+            <!-- Stats Header -->
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-2 bg-cyber-bg px-3 py-1.5 rounded border border-cyber-border">
+                    <i class="fa-solid font-mono text-amber-400 fa-fire"></i>
+                    <span class="text-xs font-mono text-gray-400">Streak:</span>
+                    <span id="userStreakVal" class="text-sm font-mono font-bold text-amber-400">12 Days</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-cyber-bg px-3 py-1.5 rounded border border-cyber-border">
+                    <i class="fa-solid text-cyber-cyan fa-shield-halved"></i>
+                    <span class="text-xs font-mono text-gray-400">Rank:</span>
+                    <span class="text-xs font-mono font-bold text-cyber-cyan bg-cyber-cyan/10 px-2 py-0.5 rounded border border-cyber-cyan/30">#2 HACKER</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Left Column: Practice Problems & Leaderboard -->
+        <div class="lg:col-span-4 space-y-6">
+
+            <!-- Practice Sheet Selector -->
+            <div class="bg-cyber-card border border-cyber-border rounded-lg p-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="font-mono text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid text-cyber-accent fa-code-branch"></i> Practice Sheets (10)
+                    </h2>
+                    <span class="text-xs font-mono text-gray-500">DSA / C++ / Py</span>
+                </div>
+                <div id="problemList" class="space-y-2 max-h-[350px] overflow-y-auto pr-1">
+                    <!-- Dynamic Questions Loaded Here -->
+                </div>
+            </div>
+
+            <!-- Leaderboard Segment -->
+            <div class="bg-cyber-card border border-cyber-border rounded-lg p-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="font-mono text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid text-cyber-pink fa-trophy"></i> Leaderboard
+                    </h2>
+                    <span class="text-xs font-mono text-cyber-accent">Live Tiers</span>
+                </div>
+                
+                <div class="space-y-3">
+                    <!-- Rank 1: Precious -->
+                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-bg/60 border border-cyber-accent/40">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs font-mono font-bold text-amber-400 w-4">#1</span>
+                            <div class="w-8 h-8 rounded-full bg-cyber-accent/20 avatar-frame-dev flex items-center justify-center text-cyber-accent font-bold text-xs">
+                                P
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-white">Precious</p>
+                                <p class="text-[10px] font-mono text-cyber-accent">DEVELOPER TIER</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-amber-400 font-bold">45 🔥</span>
+                    </div>
+
+                    <!-- Rank 2: Kunal (You) -->
+                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-cyan/5 border border-cyber-cyan/40 glow-cyan">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs font-mono font-bold text-gray-300 w-4">#2</span>
+                            <div class="w-8 h-8 rounded-full bg-cyber-cyan/20 avatar-frame-hacker flex items-center justify-center text-cyber-cyan font-bold text-xs">
+                                K
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-white">Kunal <span class="text-[10px] text-cyber-cyan">(You)</span></p>
+                                <p class="text-[10px] font-mono text-cyber-cyan">HACKER TIER</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-cyber-cyan font-bold">38 🔥</span>
+                    </div>
+
+                    <!-- Rank 3: Alex -->
+                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-bg/40 border border-cyber-border">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs font-mono font-bold text-amber-700 w-4">#3</span>
+                            <div class="w-8 h-8 rounded-full bg-purple-500/20 avatar-frame-pro flex items-center justify-center text-purple-400 font-bold text-xs">
+                                A
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-gray-300">Alex_Dev</p>
+                                <p class="text-[10px] font-mono text-purple-400">PRO TIER</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-gray-400">24 🔥</span>
+                    </div>
+
+                    <!-- Rank 4: CodeNovice -->
+                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-bg/40 border border-cyber-border opacity-70">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs font-mono text-gray-500 w-4">#4</span>
+                            <div class="w-8 h-8 rounded-full bg-gray-700/30 border border-gray-600 flex items-center justify-center text-gray-400 font-bold text-xs">
+                                C
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-gray-400">CodeNovice</p>
+                                <p class="text-[10px] font-mono text-gray-500">NOOB TIER</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">5 🔥</span>
+                    </div>
+
+                    <!-- Rank 5: AutoBot -->
+                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-bg/40 border border-cyber-border opacity-50">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs font-mono text-gray-600 w-4">#5</span>
+                            <div class="w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-500 font-bold text-xs">
+                                B
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-gray-500">SyntaxBot</p>
+                                <p class="text-[10px] font-mono text-gray-600">BOT TIER</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-gray-600">0 🔥</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Column: Code Editor & Spotify Lounge -->
+        <div class="lg:col-span-8 space-y-6 flex flex-col">
+
+            <!-- Problem Context Display -->
+            <div id="problemDetail" class="bg-cyber-card border border-cyber-border rounded-lg p-4">
+                <h3 id="probTitle" class="text-lg font-bold text-white mb-2 font-mono">1. Two Sum Problem</h3>
+                <p id="probDesc" class="text-sm text-gray-400 mb-3">Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.</p>
+                <div class="flex items-center gap-2">
+                    <span id="probDiff" class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">EASY</span>
+                    <span class="text-xs font-mono text-gray-500">Target Time: O(N)</span>
+                </div>
+            </div>
+
+            <!-- Code Editor Box -->
+            <div class="bg-cyber-card border border-cyber-border rounded-lg overflow-hidden flex-1 flex flex-col">
+                <div class="bg-cyber-bg border-b border-cyber-border px-4 py-2 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                        <span class="text-xs font-mono text-gray-400 ml-2">editor.cpp</span>
+                    </div>
+                    <select id="langSelect" class="bg-cyber-card border border-cyber-border text-xs font-mono text-cyber-accent rounded px-2 py-1 outline-none">
+                        <option>C++ 20</option>
+                        <option>Python 3</option>
+                        <option>Java 17</option>
+                        <option>C11</option>
+                    </select>
+                </div>
+                <textarea id="codeEditor" class="w-full flex-1 min-h-[260px] bg-cyber-bg p-4 font-mono text-sm text-green-400 focus:outline-none resize-none" spellcheck="false">// KT CodeWave Workspace
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    cout << "Welcome to KT CodeWave Arena!" << endl;
+    return 0;
+}</textarea>
+                <div class="bg-cyber-bg border-t border-cyber-border p-3 flex items-center justify-between">
+                    <button onclick="runCode()" class="px-4 py-2 rounded bg-cyber-accent text-black font-mono font-bold text-xs hover:bg-emerald-400 transition flex items-center gap-2">
+                        <i class="fa-solid fa-play"></i> RUN CODE
+                    </button>
+                    <span id="editorStatus" class="text-xs font-mono text-gray-500">Ready to execute</span>
+                </div>
+            </div>
+
+            <!-- Embedded Spotify Audio Lounge -->
+            <div class="bg-cyber-card border border-cyber-border rounded-lg p-4">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-mono text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-brands text-emerald-400 fa-spotify text-lg"></i> Coding Audio Lounge (Live Spotify Playlist)
+                    </h3>
+                    <span class="text-[10px] font-mono text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded">CUSTOM PLAYLIST</span>
+                </div>
+                <div class="w-full rounded-lg overflow-hidden border border-cyber-border">
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/21nZvdAsKSWgivdm88gevL?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-cyber-border bg-cyber-card py-4 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center font-mono text-xs text-gray-500">
+            KT CodeWave &copy; 2026 | Built for Developers, Hackers & Coders
+        </div>
+    </footer>
+
+    <script>
+        const questions = [
+            { id: 1, title: "1. Two Sum Problem", diff: "EASY", desc: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target." },
+            { id: 2, title: "2. Reverse Linked List", diff: "EASY", desc: "Given the head of a singly linked list, reverse the list, and return the reversed list." },
+            { id: 3, title: "3. Valid Parentheses", diff: "EASY", desc: "Determine if the input string containing brackets '()[]{}' is valid in correct order." },
+            { id: 4, title: "4. Binary Tree Traversal", diff: "MEDIUM", desc: "Perform Inorder, Preorder, and Postorder traversals on a binary tree iteratively." },
+            { id: 5, title: "5. Longest Substring Without Repeating", diff: "MEDIUM", desc: "Find the length of the longest substring without repeating characters." },
+            { id: 6, title: "6. 0/1 Knapsack Problem", diff: "MEDIUM", desc: "Given weights and values of N items, put these items in a knapsack of capacity W to get the maximum total value." },
+            { id: 7, title: "7. Rotate Matrix 90 Degrees", diff: "MEDIUM", desc: "Rotate an N x N 2D matrix representing an image by 90 degrees clockwise in-place." },
+            { id: 8, title: "8. LRU Cache Implementation", diff: "HARD", desc: "Design a data structure that follows the constraints of a Least Recently Used (LRU) cache." },
+            { id: 9, title: "9. Palindrome Partitioning", diff: "HARD", desc: "Given a string s, partition s such that every substring of the partition is a palindrome." },
+            { id: 10, title: "10. Word Search in Matrix (Trie)", diff: "HARD", desc: "Given an m x n board of characters and a list of strings words, return all words on the board using Trie." }
+        ];
+
+        function loadQuestions() {
+            const listContainer = document.getElementById('problemList');
+            listContainer.innerHTML = '';
+            questions.forEach((q, idx) => {
+                const diffColor = q.diff === 'EASY' ? 'text-emerald-400' : q.diff === 'MEDIUM' ? 'text-amber-400' : 'text-red-400';
+                listContainer.innerHTML += `
+                    <div onclick="selectQuestion(${idx})" class="p-2.5 rounded bg-cyber-bg/60 border border-cyber-border hover:border-cyber-accent cursor-pointer transition flex items-center justify-between">
+                        <span class="text-xs font-mono text-gray-300 truncate">${q.title}</span>
+                        <span class="text-[10px] font-mono ${diffColor}">${q.diff}</span>
+                    </div>
+                `;
+            });
+        }
+
+        function selectQuestion(index) {
+            const q = questions[index];
+            document.getElementById('probTitle').innerText = q.title;
+            document.getElementById('probDesc').innerText = q.desc;
+            document.getElementById('probDiff').innerText = q.diff;
+        }
+
+        function runCode() {
+            const status = document.getElementById('editorStatus');
+            status.innerText = "Executing test cases...";
+            status.className = "text-xs font-mono text-amber-400 animate-pulse";
+            setTimeout(() => {
+                status.innerText = "All Test Cases Passed! (+10 XP)";
+                status.className = "text-xs font-mono text-cyber-accent";
+            }, 1200);
+        }
+
+        loadQuestions();
+    </script>
+</body>
+</html>
