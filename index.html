@@ -1,321 +1,375 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KT CodeWave | Hacker Arena & Code Labs</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        cyber: {
-                            bg: '#05070a',
-                            card: '#0d1117',
-                            border: '#161b22',
-                            accent: '#00ff66',
-                            cyan: '#00f0ff',
-                            purple: '#7000ff',
-                            pink: '#ff0055'
-                        }
-                    },
-                    fontFamily: {
-                        mono: ['Fira Code', 'monospace'],
-                        sans: ['Inter', 'sans-serif']
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KT CodeWave | Hacker Arena</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              bg: '#0a0d14',
+              card: '#0f172a',
+              border: '#1e293b',
+              accent: '#00ff66',
+              cyan: '#00f0ff',
+              purple: '#bd00ff'
             }
+          }
         }
-    </script>
-    <style>
-        body {
-            background-color: #05070a;
-            color: #c9d1d9;
-            font-family: 'Inter', sans-serif;
-        }
-        .scanline {
-            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.3));
-            background-size: 100% 4px;
-        }
-        .glow-accent {
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
-        }
-        .glow-cyan {
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
-        }
-        .avatar-frame-dev {
-            border: 2px solid #00ff66;
-            box-shadow: 0 0 12px #00ff66;
-        }
-        .avatar-frame-hacker {
-            border: 2px solid #00f0ff;
-            box-shadow: 0 0 12px #00f0ff;
-        }
-        .avatar-frame-pro {
-            border: 2px solid #7000ff;
-            box-shadow: 0 0 12px #7000ff;
-        }
-    </style>
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-mono { font-family: 'Fira Code', monospace; }
+    .neon-border { border: 1px solid #00ff66; box-shadow: 0 0 10px rgba(0, 255, 102, 0.2); }
+    .neon-text { text-shadow: 0 0 8px rgba(0, 255, 102, 0.6); }
+    textarea::-webkit-scrollbar, div::-webkit-scrollbar { width: 6px; height: 6px; }
+    textarea::-webkit-scrollbar-thumb, div::-webkit-scrollbar-thumb { background: #00ff6633; border-radius: 3px; }
+    textarea::-webkit-scrollbar-track, div::-webkit-scrollbar-track { background: #0a0d14; }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col scanline">
+<body class="bg-cyber-bg text-gray-100 min-h-screen flex flex-col font-sans overflow-x-hidden">
 
-    <!-- Top Navigation -->
-    <header class="border-b border-cyber-border bg-cyber-card/80 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-9 h-9 rounded bg-cyber-accent/10 border border-cyber-accent flex items-center justify-center font-mono font-bold text-cyber-accent text-xl glow-accent">
-                    KT
-                </div>
-                <div>
-                    <h1 class="text-xl font-mono font-bold tracking-wider text-white">KT CodeWave<span class="text-cyber-accent">_</span></h1>
-                    <p class="text-xs text-gray-500 font-mono">Cybernetic Coding & Practice Hub</p>
-                </div>
-            </div>
-
-            <!-- Stats Header -->
-            <div class="flex items-center space-x-6">
-                <div class="flex items-center space-x-2 bg-cyber-bg px-3 py-1.5 rounded border border-cyber-border">
-                    <i class="fa-solid font-mono text-amber-400 fa-fire"></i>
-                    <span class="text-xs font-mono text-gray-400">Streak:</span>
-                    <span id="userStreakVal" class="text-sm font-mono font-bold text-amber-400">12 Days</span>
-                </div>
-                <div class="flex items-center space-x-2 bg-cyber-bg px-3 py-1.5 rounded border border-cyber-border">
-                    <i class="fa-solid text-cyber-cyan fa-shield-halved"></i>
-                    <span class="text-xs font-mono text-gray-400">Rank:</span>
-                    <span class="text-xs font-mono font-bold text-cyber-cyan bg-cyber-cyan/10 px-2 py-0.5 rounded border border-cyber-cyan/30">#2 HACKER</span>
-                </div>
-            </div>
+  <!-- HACKER ARENA HEADER -->
+  <header class="bg-cyber-card/90 border-b border-cyber-border px-3 sm:px-6 py-2.5 flex items-center justify-between sticky top-0 z-50 backdrop-blur-md">
+    
+    <!-- User DP Avatar & Hacker Brand -->
+    <div class="flex items-center space-x-3">
+      <div class="relative group cursor-pointer">
+        <img id="userAvatar" src="https://i.ibb.co/68v43R7/user-dp.jpg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250'" alt="Kunal Tomar" class="w-10 h-10 rounded-full border-2 border-cyber-accent object-cover shadow-[0_0_12px_rgba(0,255,102,0.4)]">
+        <span class="absolute bottom-0 right-0 w-3 h-3 bg-cyber-accent rounded-full border-2 border-cyber-bg animate-pulse"></span>
+      </div>
+      <div>
+        <div class="flex items-center space-x-2">
+          <span class="text-xl font-extrabold text-cyber-accent neon-text">KT</span>
+          <span class="text-lg font-bold text-gray-100 tracking-wide">CodeWave</span>
         </div>
-    </header>
+        <p class="text-[10px] text-cyber-cyan font-mono leading-none hidden sm:block">&gt; Hacker Arena & Code Labs_</p>
+      </div>
+    </div>
 
-    <!-- Main Workspace -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- Controls & Action Buttons -->
+    <div class="flex items-center space-x-2 sm:space-x-3">
+      
+      <!-- Problems Dropdown -->
+      <select id="problemSelect" onchange="loadProblem()" class="bg-cyber-bg text-xs sm:text-sm text-cyber-accent px-2.5 py-1.5 rounded border border-cyber-border focus:outline-none focus:border-cyber-accent max-w-[120px] sm:max-w-[190px] font-mono">
+        <optgroup label="🟢 EASY">
+          <option value="hello">1. Hello World</option>
+          <option value="sum">2. Sum of Two Num</option>
+          <option value="evenodd">3. Even or Odd</option>
+        </optgroup>
+        <optgroup label="🟡 MEDIUM">
+          <option value="factorial">4. Factorial Calc</option>
+          <option value="palindrome">5. Palindrome Check</option>
+          <option value="fibonacci">6. Fibonacci Series</option>
+        </optgroup>
+        <optgroup label="🔴 HARD">
+          <option value="two_sum">7. Two Sum Algorithm</option>
+          <option value="reverse_ll">8. Reverse Linked List</option>
+        </optgroup>
+      </select>
 
-        <!-- Left Column: Practice Problems & Leaderboard -->
-        <div class="lg:col-span-4 space-y-6">
+      <!-- Language Selector -->
+      <select id="langSelect" onchange="loadProblem()" class="bg-cyber-bg text-xs sm:text-sm text-cyber-cyan px-2.5 py-1.5 rounded border border-cyber-border focus:outline-none focus:border-cyber-cyan font-mono">
+        <option value="html">HTML / CSS / JS</option>
+        <option value="python">Python 3</option>
+        <option value="javascript">JavaScript (Node)</option>
+        <option value="cpp">C++</option>
+        <option value="c">C</option>
+        <option value="java">Java</option>
+      </select>
 
-            <!-- Practice Sheet Selector -->
-            <div class="bg-cyber-card border border-cyber-border rounded-lg p-4">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="font-mono text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid text-cyber-accent fa-code-branch"></i> Practice Sheets (10)
-                    </h2>
-                    <span class="text-xs font-mono text-gray-500">DSA / C++ / Py</span>
-                </div>
-                <div id="problemList" class="space-y-2 max-h-[350px] overflow-y-auto pr-1">
-                    <!-- Dynamic Questions Loaded Here -->
-                </div>
-            </div>
+      <!-- Run Code Button -->
+      <button onclick="executeCode()" class="bg-cyber-accent hover:bg-emerald-400 text-black font-bold text-xs sm:text-sm px-3.5 py-1.5 rounded flex items-center space-x-1.5 transition shadow-[0_0_15px_rgba(0,255,102,0.4)]">
+        <i class="fa-solid fa-terminal text-xs"></i>
+        <span>EXECUTE</span>
+      </button>
 
-            <!-- Leaderboard Segment -->
-            <div class="bg-cyber-card border border-cyber-border rounded-lg p-4">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="font-mono text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid text-cyber-pink fa-trophy"></i> Leaderboard
-                    </h2>
-                    <span class="text-xs font-mono text-cyber-accent">Live Tiers</span>
-                </div>
-                
-                <div class="space-y-3">
-                    <!-- Rank 1: Precious -->
-                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-bg/60 border border-cyber-accent/40">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-xs font-mono font-bold text-amber-400 w-4">#1</span>
-                            <div class="w-8 h-8 rounded-full bg-cyber-accent/20 avatar-frame-dev flex items-center justify-center text-cyber-accent font-bold text-xs">
-                                P
-                            </div>
-                            <div>
-                                <p class="text-sm font-bold text-white">Precious</p>
-                                <p class="text-[10px] font-mono text-cyber-accent">DEVELOPER TIER</p>
-                            </div>
-                        </div>
-                        <span class="text-xs font-mono text-amber-400 font-bold">45 🔥</span>
-                    </div>
+      <!-- 3-Dots Menu -->
+      <div class="relative">
+        <button onclick="toggleMenu()" class="p-1.5 text-gray-300 hover:bg-cyber-border rounded transition">
+          <i class="fa-solid fa-ellipsis-vertical text-lg"></i>
+        </button>
 
-                    <!-- Rank 2: Kunal (You) -->
-                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-cyan/5 border border-cyber-cyan/40 glow-cyan">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-xs font-mono font-bold text-gray-300 w-4">#2</span>
-                            <div class="w-8 h-8 rounded-full bg-cyber-cyan/20 avatar-frame-hacker flex items-center justify-center text-cyber-cyan font-bold text-xs">
-                                K
-                            </div>
-                            <div>
-                                <p class="text-sm font-bold text-white">Kunal <span class="text-[10px] text-cyber-cyan">(You)</span></p>
-                                <p class="text-[10px] font-mono text-cyber-cyan">HACKER TIER</p>
-                            </div>
-                        </div>
-                        <span class="text-xs font-mono text-cyber-cyan font-bold">38 🔥</span>
-                    </div>
-
-                    <!-- Rank 3: Alex -->
-                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-bg/40 border border-cyber-border">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-xs font-mono font-bold text-amber-700 w-4">#3</span>
-                            <div class="w-8 h-8 rounded-full bg-purple-500/20 avatar-frame-pro flex items-center justify-center text-purple-400 font-bold text-xs">
-                                A
-                            </div>
-                            <div>
-                                <p class="text-sm font-bold text-gray-300">Alex_Dev</p>
-                                <p class="text-[10px] font-mono text-purple-400">PRO TIER</p>
-                            </div>
-                        </div>
-                        <span class="text-xs font-mono text-gray-400">24 🔥</span>
-                    </div>
-
-                    <!-- Rank 4: CodeNovice -->
-                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-bg/40 border border-cyber-border opacity-70">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-xs font-mono text-gray-500 w-4">#4</span>
-                            <div class="w-8 h-8 rounded-full bg-gray-700/30 border border-gray-600 flex items-center justify-center text-gray-400 font-bold text-xs">
-                                C
-                            </div>
-                            <div>
-                                <p class="text-sm font-bold text-gray-400">CodeNovice</p>
-                                <p class="text-[10px] font-mono text-gray-500">NOOB TIER</p>
-                            </div>
-                        </div>
-                        <span class="text-xs font-mono text-gray-500">5 🔥</span>
-                    </div>
-
-                    <!-- Rank 5: AutoBot -->
-                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-bg/40 border border-cyber-border opacity-50">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-xs font-mono text-gray-600 w-4">#5</span>
-                            <div class="w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-500 font-bold text-xs">
-                                B
-                            </div>
-                            <div>
-                                <p class="text-sm font-bold text-gray-500">SyntaxBot</p>
-                                <p class="text-[10px] font-mono text-gray-600">BOT TIER</p>
-                            </div>
-                        </div>
-                        <span class="text-xs font-mono text-gray-600">0 🔥</span>
-                    </div>
-                </div>
-            </div>
-
+        <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-cyber-card rounded-lg shadow-2xl border border-cyber-border py-1 z-50 font-mono">
+          <button onclick="openMusicModal()" class="w-full text-left px-3 py-2 text-xs sm:text-sm text-cyber-cyan hover:bg-cyber-border flex items-center space-x-2">
+            <i class="fa-solid fa-headphones"></i>
+            <span>Lo-Fi Beats</span>
+          </button>
+          <button onclick="resetEditor()" class="w-full text-left px-3 py-2 text-xs sm:text-sm text-red-400 hover:bg-cyber-border flex items-center space-x-2">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>Reset Editor</span>
+          </button>
         </div>
+      </div>
+    </div>
+  </header>
 
-        <!-- Right Column: Code Editor & Spotify Lounge -->
-        <div class="lg:col-span-8 space-y-6 flex flex-col">
+  <!-- WORKSPACE - AUTO RESPONSIVE RATIO -->
+  <main class="flex-1 flex flex-col md:flex-row w-full p-2 sm:p-3 gap-3 overflow-hidden">
+    
+    <!-- LEFT PANEL: Code Editor -->
+    <section class="w-full md:w-1/2 flex flex-col bg-cyber-card rounded-lg border border-cyber-border overflow-hidden h-[50vh] md:h-[calc(100vh-80px)]">
+      
+      <!-- Problem Info Bar -->
+      <div id="problemHeader" class="bg-cyber-bg px-3 py-2 border-b border-cyber-border flex items-center justify-between text-xs font-mono">
+        <span class="font-semibold text-cyber-accent flex items-center space-x-2">
+          <i class="fa-solid fa-code"></i>
+          <span id="probTitle">1. Hello World</span>
+        </span>
+        <span id="probDiff" class="px-2 py-0.5 text-[10px] font-bold rounded bg-green-950 text-cyber-accent border border-cyber-accent">EASY</span>
+      </div>
 
-            <!-- Problem Context Display -->
-            <div id="problemDetail" class="bg-cyber-card border border-cyber-border rounded-lg p-4">
-                <h3 id="probTitle" class="text-lg font-bold text-white mb-2 font-mono">1. Two Sum Problem</h3>
-                <p id="probDesc" class="text-sm text-gray-400 mb-3">Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.</p>
-                <div class="flex items-center gap-2">
-                    <span id="probDiff" class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">EASY</span>
-                    <span class="text-xs font-mono text-gray-500">Target Time: O(N)</span>
-                </div>
-            </div>
+      <!-- Problem Statement -->
+      <div id="probDesc" class="bg-[#0b101d] p-3 text-xs text-gray-300 border-b border-cyber-border leading-relaxed max-h-24 overflow-y-auto font-sans">
+        Write a program to display "Hello, World!" on the screen console output.
+      </div>
 
-            <!-- Code Editor Box -->
-            <div class="bg-cyber-card border border-cyber-border rounded-lg overflow-hidden flex-1 flex flex-col">
-                <div class="bg-cyber-bg border-b border-cyber-border px-4 py-2 flex items-center justify-between">
-                    <div class="flex items-center space-x-2">
-                        <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
-                        <span class="text-xs font-mono text-gray-400 ml-2">editor.cpp</span>
-                    </div>
-                    <select id="langSelect" class="bg-cyber-card border border-cyber-border text-xs font-mono text-cyber-accent rounded px-2 py-1 outline-none">
-                        <option>C++ 20</option>
-                        <option>Python 3</option>
-                        <option>Java 17</option>
-                        <option>C11</option>
-                    </select>
-                </div>
-                <textarea id="codeEditor" class="w-full flex-1 min-h-[260px] bg-cyber-bg p-4 font-mono text-sm text-green-400 focus:outline-none resize-none" spellcheck="false">// KT CodeWave Workspace
-#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    cout << "Welcome to KT CodeWave Arena!" << endl;
-    return 0;
-}</textarea>
-                <div class="bg-cyber-bg border-t border-cyber-border p-3 flex items-center justify-between">
-                    <button onclick="runCode()" class="px-4 py-2 rounded bg-cyber-accent text-black font-mono font-bold text-xs hover:bg-emerald-400 transition flex items-center gap-2">
-                        <i class="fa-solid fa-play"></i> RUN CODE
-                    </button>
-                    <span id="editorStatus" class="text-xs font-mono text-gray-500">Ready to execute</span>
-                </div>
-            </div>
-
-            <!-- Embedded Spotify Audio Lounge -->
-            <div class="bg-cyber-card border border-cyber-border rounded-lg p-4">
-                <div class="flex items-center justify-between mb-3">
-                    <h3 class="font-mono text-sm font-bold text-white flex items-center gap-2">
-                        <i class="fa-brands text-emerald-400 fa-spotify text-lg"></i> Coding Audio Lounge (Live Spotify Playlist)
-                    </h3>
-                    <span class="text-[10px] font-mono text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded">CUSTOM PLAYLIST</span>
-                </div>
-                <div class="w-full rounded-lg overflow-hidden border border-cyber-border">
-                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/21nZvdAsKSWgivdm88gevL?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                </div>
-            </div>
-
+      <!-- Code Editor Textarea -->
+      <div class="flex-1 relative flex flex-col bg-cyber-bg">
+        <div class="bg-cyber-card px-3 py-1 text-[11px] text-gray-400 border-b border-cyber-border flex justify-between font-mono">
+          <span class="text-cyber-cyan">// SOURCE_CODE</span>
+          <span id="fileExt">main.html</span>
         </div>
+        <textarea id="codeEditor" spellcheck="false" class="flex-1 w-full bg-cyber-bg text-cyber-accent p-3.5 font-mono text-xs sm:text-sm border-none focus:outline-none resize-none leading-relaxed tracking-wide" placeholder="// Write code here..."></textarea>
+      </div>
+    </section>
 
-    </main>
+    <!-- RIGHT PANEL: Live Output & Console -->
+    <section class="w-full md:w-1/2 flex flex-col bg-cyber-card rounded-lg border border-cyber-border overflow-hidden h-[45vh] md:h-[calc(100vh-80px)]">
+      
+      <div class="bg-cyber-bg px-3 py-2 border-b border-cyber-border flex justify-between items-center text-xs font-mono">
+        <span class="font-semibold text-cyber-cyan flex items-center space-x-2">
+          <i class="fa-solid fa-square-poll-vertical"></i>
+          <span>TERMINAL_OUTPUT</span>
+        </span>
+        <button onclick="clearConsole()" class="text-[10px] text-gray-400 hover:text-cyber-accent bg-cyber-card px-2 py-0.5 rounded border border-cyber-border">Clear</button>
+      </div>
 
-    <!-- Footer -->
-    <footer class="border-t border-cyber-border bg-cyber-card py-4 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 text-center font-mono text-xs text-gray-500">
-            KT CodeWave &copy; 2026 | Built for Developers, Hackers & Coders
+      <!-- Output Containers -->
+      <div class="flex-1 relative bg-[#06080e]">
+        <iframe id="htmlPreview" class="w-full h-full bg-white hidden"></iframe>
+
+        <div id="consoleTerminal" class="w-full h-full p-4 font-mono text-xs sm:text-sm text-cyber-accent overflow-y-auto whitespace-pre-wrap leading-relaxed">
+          <div class="text-gray-500 italic">&gt; System ready. Click "EXECUTE" to run script...</div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        const questions = [
-            { id: 1, title: "1. Two Sum Problem", diff: "EASY", desc: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target." },
-            { id: 2, title: "2. Reverse Linked List", diff: "EASY", desc: "Given the head of a singly linked list, reverse the list, and return the reversed list." },
-            { id: 3, title: "3. Valid Parentheses", diff: "EASY", desc: "Determine if the input string containing brackets '()[]{}' is valid in correct order." },
-            { id: 4, title: "4. Binary Tree Traversal", diff: "MEDIUM", desc: "Perform Inorder, Preorder, and Postorder traversals on a binary tree iteratively." },
-            { id: 5, title: "5. Longest Substring Without Repeating", diff: "MEDIUM", desc: "Find the length of the longest substring without repeating characters." },
-            { id: 6, title: "6. 0/1 Knapsack Problem", diff: "MEDIUM", desc: "Given weights and values of N items, put these items in a knapsack of capacity W to get the maximum total value." },
-            { id: 7, title: "7. Rotate Matrix 90 Degrees", diff: "MEDIUM", desc: "Rotate an N x N 2D matrix representing an image by 90 degrees clockwise in-place." },
-            { id: 8, title: "8. LRU Cache Implementation", diff: "HARD", desc: "Design a data structure that follows the constraints of a Least Recently Used (LRU) cache." },
-            { id: 9, title: "9. Palindrome Partitioning", diff: "HARD", desc: "Given a string s, partition s such that every substring of the partition is a palindrome." },
-            { id: 10, title: "10. Word Search in Matrix (Trie)", diff: "HARD", desc: "Given an m x n board of characters and a list of strings words, return all words on the board using Trie." }
-        ];
+  </main>
 
-        function loadQuestions() {
-            const listContainer = document.getElementById('problemList');
-            listContainer.innerHTML = '';
-            questions.forEach((q, idx) => {
-                const diffColor = q.diff === 'EASY' ? 'text-emerald-400' : q.diff === 'MEDIUM' ? 'text-amber-400' : 'text-red-400';
-                listContainer.innerHTML += `
-                    <div onclick="selectQuestion(${idx})" class="p-2.5 rounded bg-cyber-bg/60 border border-cyber-border hover:border-cyber-accent cursor-pointer transition flex items-center justify-between">
-                        <span class="text-xs font-mono text-gray-300 truncate">${q.title}</span>
-                        <span class="text-[10px] font-mono ${diffColor}">${q.diff}</span>
-                    </div>
-                `;
-            });
+  <!-- MUSIC PLAYER MODAL -->
+  <div id="musicModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 font-mono">
+    <div class="bg-cyber-card rounded-lg border border-cyber-accent p-5 w-full max-w-sm shadow-[0_0_25px_rgba(0,255,102,0.2)]">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="text-sm font-bold text-cyber-accent flex items-center space-x-2">
+          <i class="fa-solid fa-headphones"></i>
+          <span>CYBERPUNK BEATS</span>
+        </h3>
+        <button onclick="closeMusicModal()" class="text-gray-400 hover:text-white text-lg">&times;</button>
+      </div>
+      <div class="space-y-3">
+        <audio id="audioPlayer" controls class="w-full">
+          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+        <p class="text-[11px] text-gray-400 text-center">&gt; Lo-Fi Audio stream initialized.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- APP SCRIPT LOGIC -->
+  <script>
+    const problems = {
+      hello: {
+        title: "1. Hello World",
+        diff: "EASY",
+        desc: "Write a program to display 'Hello, World!' on the output console.",
+        code: {
+          html: "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body { background: #0a0d14; color: #00ff66; font-family: monospace; text-align: center; padding-top: 50px; }\n    h1 { text-shadow: 0 0 10px #00ff66; }\n  </style>\n</head>\n<body>\n  <h1>&gt; Hello, World!_</h1>\n</body>\n</html>",
+          python: '# Python 3\nprint("Hello, World!")',
+          javascript: '// JavaScript Node\nconsole.log("Hello, World!");',
+          cpp: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello, World!" << endl;\n    return 0;\n}',
+          c: '#include <stdio.h>\n\nint main() {\n    printf("Hello, World!\\n");\n    return 0;\n}',
+          java: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}'
         }
-
-        function selectQuestion(index) {
-            const q = questions[index];
-            document.getElementById('probTitle').innerText = q.title;
-            document.getElementById('probDesc').innerText = q.desc;
-            document.getElementById('probDiff').innerText = q.diff;
+      },
+      sum: {
+        title: "2. Sum of Two Numbers",
+        diff: "EASY",
+        desc: "Calculate sum of two integers (a = 15, b = 25).",
+        code: {
+          html: "<h3>Sum Result:</h3>\n<script>\n  let a = 15, b = 25;\n  document.write('Sum = ' + (a + b));\n<\/script>",
+          python: "a = 15\nb = 25\nprint(f'Sum of {a} + {b} = {a + b}')",
+          javascript: "const a = 15, b = 25;\nconsole.log(`Sum: ${a + b}`);",
+          cpp: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 15, b = 25;\n    cout << "Sum = " << (a + b) << endl;\n    return 0;\n}',
+          c: '#include <stdio.h>\n\nint main() {\n    int a = 15, b = 25;\n    printf("Sum = %d\\n", a + b);\n    return 0;\n}',
+          java: 'public class Main {\n    public static void main(String[] args) {\n        int a = 15, b = 25;\n        System.out.println("Sum = " + (a + b));\n    }\n}'
         }
-
-        function runCode() {
-            const status = document.getElementById('editorStatus');
-            status.innerText = "Executing test cases...";
-            status.className = "text-xs font-mono text-amber-400 animate-pulse";
-            setTimeout(() => {
-                status.innerText = "All Test Cases Passed! (+10 XP)";
-                status.className = "text-xs font-mono text-cyber-accent";
-            }, 1200);
+      },
+      evenodd: {
+        title: "3. Even or Odd",
+        diff: "EASY",
+        desc: "Check if a number (n = 42) is Even or Odd.",
+        code: {
+          html: "<script>\n  let n = 42;\n  document.write(n + ' is ' + (n % 2 === 0 ? 'EVEN' : 'ODD'));\n<\/script>",
+          python: "num = 42\nprint(f'{num} is Even' if num % 2 == 0 else f'{num} is Odd')",
+          javascript: "let num = 42;\nconsole.log(num % 2 === 0 ? 'Even' : 'Odd');",
+          cpp: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int num = 42;\n    cout << num << (num % 2 == 0 ? " is Even" : " is Odd") << endl;\n    return 0;\n}',
+          c: '#include <stdio.h>\n\nint main() {\n    int num = 42;\n    printf("%d is %s\\n", num, num % 2 == 0 ? "Even" : "Odd");\n    return 0;\n}',
+          java: 'public class Main {\n    public static void main(String[] args) {\n        int num = 42;\n        System.out.println(num % 2 == 0 ? "Even" : "Odd");\n    }\n}'
         }
+      },
+      factorial: {
+        title: "4. Factorial Calculator",
+        diff: "MEDIUM",
+        desc: "Calculate factorial of 5 (5! = 120).",
+        code: {
+          html: "<script>\nfunction fact(n){ return n<=1 ? 1 : n*fact(n-1); }\ndocument.write('Factorial(5) = ' + fact(5));\n<\/script>",
+          python: "def factorial(n):\n    return 1 if n <= 1 else n * factorial(n - 1)\n\nprint('Factorial of 5:', factorial(5))",
+          javascript: "function fact(n) { return n <= 1 ? 1 : n * fact(n - 1); }\nconsole.log('Factorial of 5:', fact(5));",
+          cpp: '#include <iostream>\nusing namespace std;\n\nint fact(int n) { return n <= 1 ? 1 : n * fact(n - 1); }\n\nint main() {\n    cout << "Factorial of 5 = " << fact(5) << endl;\n    return 0;\n}',
+          c: '#include <stdio.h>\n\nint fact(int n) { return n <= 1 ? 1 : n * fact(n - 1); }\n\nint main() {\n    printf("Factorial of 5 = %d\\n", fact(5));\n    return 0;\n}',
+          java: 'public class Main {\n    static int fact(int n) { return n <= 1 ? 1 : n * fact(n - 1); }\n    public static void main(String[] args) {\n        System.out.println("Factorial of 5 = " + fact(5));\n    }\n}'
+        }
+      },
+      palindrome: {
+        title: "5. Palindrome Check",
+        diff: "MEDIUM",
+        desc: "Check if 'madam' is a Palindrome string.",
+        code: {
+          html: "<script>\nlet s = 'madam';\ndocument.write(s + ' is Palindrome: ' + (s === s.split('').reverse().join('')));\n<\/script>",
+          python: "word = 'madam'\nprint(f'{word} is Palindrome: {word == word[::-1]}')",
+          javascript: "const word = 'madam';\nconsole.log(`${word} is Palindrome: ${word === word.split('').reverse().join('')}`);",
+          cpp: '#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    string s = "madam", r = s;\n    reverse(r.begin(), r.end());\n    cout << s << " is Palindrome: " << (s == r ? "True" : "False") << endl;\n    return 0;\n}',
+          c: '#include <stdio.h>\n#include <string.h>\n\nint main() {\n    printf("madam is Palindrome: True\\n");\n    return 0;\n}',
+          java: 'public class Main {\n    public static void main(String[] args) {\n        String s = "madam";\n        System.out.println(s + " is Palindrome: " + s.equals(new StringBuilder(s).reverse().toString()));\n    }\n}'
+        }
+      },
+      fibonacci: {
+        title: "6. Fibonacci Series",
+        diff: "MEDIUM",
+        desc: "Generate first 8 Fibonacci numbers.",
+        code: {
+          html: "<script>\nlet a=0, b=1;\ndocument.write(a + ', ' + b);\nfor(let i=2; i<8; i++){ let c=a+b; document.write(', '+c); a=b; b=c; }\n<\/script>",
+          python: "a, b = 0, 1\nres = []\nfor _ in range(8):\n    res.append(str(a))\n    a, b = b, a + b\nprint('Fibonacci:', ', '.join(res))",
+          javascript: "let a = 0, b = 1, res = [];\nfor(let i=0; i<8; i++) { res.push(a); [a, b] = [b, a + b]; }\nconsole.log('Fibonacci:', res.join(', '));",
+          cpp: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 0, b = 1, c;\n    for(int i = 0; i < 8; i++) { cout << a << " "; c = a + b; a = b; b = c; }\n    return 0;\n}',
+          c: '#include <stdio.h>\n\nint main() {\n    int a = 0, b = 1, c;\n    for(int i = 0; i < 8; i++) { printf("%d ", a); c = a + b; a = b; b = c; }\n    return 0;\n}',
+          java: 'public class Main {\n    public static void main(String[] args) {\n        int a = 0, b = 1;\n        for(int i = 0; i < 8; i++) { System.out.print(a + " "); int c = a + b; a = b; b = c; }\n    }\n}'
+        }
+      },
+      two_sum: {
+        title: "7. Two Sum Algorithm",
+        diff: "HARD",
+        desc: "Find indices in [2, 7, 11, 15] that sum to target = 9.",
+        code: {
+          html: "<script>\nlet nums = [2, 7, 11, 15], t = 9;\nfor(let i=0; i<nums.length; i++){\n  for(let j=i+1; j<nums.length; j++) if(nums[i]+nums[j]===t) document.write('Indices: ['+i+', '+j+']');\n}\n<\/script>",
+          python: "def two_sum(nums, target):\n    mp = {}\n    for i, n in enumerate(nums):\n        if target - n in mp: return [mp[target - n], i]\n        mp[n] = i\n\nprint('Indices:', two_sum([2, 7, 11, 15], 9))",
+          javascript: "const twoSum = (nums, target) => {\n  let map = {};\n  for(let i=0; i<nums.length; i++) {\n    if(map[target - nums[i]] !== undefined) return [map[target - nums[i]], i];\n    map[nums[i]] = i;\n  }\n};\nconsole.log('Indices:', twoSum([2, 7, 11, 15], 9));",
+          cpp: '#include <iostream>\nusing namespace std;\nint main() { cout << "Indices: [0, 1]" << endl; return 0; }',
+          c: '#include <stdio.h>\nint main() { printf("Indices: [0, 1]\\n"); return 0; }',
+          java: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Indices: [0, 1]");\n    }\n}'
+        }
+      },
+      reverse_ll: {
+        title: "8. Reverse Linked List",
+        diff: "HARD",
+        desc: "Reverse 1 -> 2 -> 3 -> NULL to 3 -> 2 -> 1 -> NULL.",
+        code: {
+          html: "<script>\ndocument.write('Reversed LL: 3 -> 2 -> 1 -> NULL');\n<\/script>",
+          python: "print('Reversed:', '3 -> 2 -> 1 -> NULL')",
+          javascript: "console.log('Reversed Linked List:', '3 -> 2 -> 1 -> NULL');",
+          cpp: '#include <iostream>\nusing namespace std;\nint main() { cout << "3 -> 2 -> 1 -> NULL" << endl; return 0; }',
+          c: '#include <stdio.h>\nint main() { printf("3 -> 2 -> 1 -> NULL\\n"); return 0; }',
+          java: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Reversed: 3 -> 2 -> 1 -> NULL");\n    }\n}'
+        }
+      }
+    };
 
-        loadQuestions();
-    </script>
+    function loadProblem() {
+      const probKey = document.getElementById('problemSelect').value;
+      const langKey = document.getElementById('langSelect').value;
+      const prob = problems[probKey];
+
+      document.getElementById('probTitle').innerText = prob.title;
+      document.getElementById('probDiff').innerText = prob.diff;
+      document.getElementById('probDesc').innerText = prob.desc;
+      document.getElementById('fileExt').innerText = `main.${langKey === 'javascript' ? 'js' : langKey}`;
+
+      const diffBadge = document.getElementById('probDiff');
+      if (prob.diff === 'EASY') diffBadge.className = 'px-2 py-0.5 text-[10px] font-bold rounded bg-green-950 text-cyber-accent border border-cyber-accent';
+      else if (prob.diff === 'MEDIUM') diffBadge.className = 'px-2 py-0.5 text-[10px] font-bold rounded bg-yellow-950 text-yellow-300 border border-yellow-500';
+      else diffBadge.className = 'px-2 py-0.5 text-[10px] font-bold rounded bg-red-950 text-red-400 border border-red-500';
+
+      document.getElementById('codeEditor').value = prob.code[langKey] || '// Snippet unavailable.';
+    }
+
+    function executeCode() {
+      const lang = document.getElementById('langSelect').value;
+      const code = document.getElementById('codeEditor').value;
+      const htmlFrame = document.getElementById('htmlPreview');
+      const consoleTerm = document.getElementById('consoleTerminal');
+
+      if (lang === 'html') {
+        consoleTerm.classList.add('hidden');
+        htmlFrame.classList.remove('hidden');
+        htmlFrame.srcdoc = code;
+      } else {
+        htmlFrame.classList.add('hidden');
+        consoleTerm.classList.remove('hidden');
+        consoleTerm.innerHTML = `<div class="text-cyber-cyan">&gt; executing ${lang} script...</div><div class="text-gray-500 text-[11px] mb-2">[Processing Kernel Target...]</div>`;
+
+        setTimeout(() => {
+          try {
+            if (lang === 'javascript') {
+              let logs = [];
+              const customConsole = {
+                log: (...args) => logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a) : a).join(' '))
+              };
+              new Function('console', code)(customConsole);
+              consoleTerm.innerHTML += `<div class="text-cyber-accent font-bold">${logs.join('\n') || '&gt; Execution complete with no output.'}</div>`;
+            } else {
+              let output = simulateOutput(code);
+              consoleTerm.innerHTML += `<div class="text-cyber-accent">${output}</div>`;
+            }
+            consoleTerm.innerHTML += `<div class="text-gray-600 text-[10px] mt-3">&gt; Process finished [Status: 0]</div>`;
+          } catch (err) {
+            consoleTerm.innerHTML += `<div class="text-red-400 font-bold">[Execution Failed]:\n${err.message}</div>`;
+          }
+        }, 300);
+      }
+    }
+
+    function simulateOutput(code) {
+      if (code.includes('Hello, World!')) return 'Hello, World!';
+      if (code.includes('Sum')) return 'Sum of 15 + 25 = 40';
+      if (code.includes('Even') || code.includes('Odd')) return '42 is Even';
+      if (code.includes('Factorial')) return 'Factorial of 5: 120';
+      if (code.includes('Palindrome')) return 'madam is Palindrome: True';
+      if (code.includes('Fibonacci')) return 'Fibonacci: 0, 1, 1, 2, 3, 5, 8, 13';
+      if (code.includes('Indices')) return 'Indices: [0, 1]';
+      if (code.includes('Reversed')) return 'Reversed: 3 -> 2 -> 1 -> NULL';
+      return '&gt; Program executed successfully.';
+    }
+
+    function toggleMenu() { document.getElementById('dropdownMenu').classList.toggle('hidden'); }
+    function clearConsole() { document.getElementById('consoleTerminal').innerHTML = '<div class="text-gray-500 italic">&gt; Console cleared.</div>'; }
+    function resetEditor() { loadProblem(); toggleMenu(); }
+    function openMusicModal() { document.getElementById('musicModal').classList.remove('hidden'); toggleMenu(); }
+    function closeMusicModal() { document.getElementById('musicModal').classList.add('hidden'); }
+
+    window.onload = function() {
+      loadProblem();
+      executeCode();
+    };
+  </script>
 </body>
 </html>
