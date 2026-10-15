@@ -65,8 +65,8 @@
     <!-- Matrix Animation Overlay -->
     <canvas id="matrixCanvas"></canvas>
 
-    <!-- Top Navigation Header -->
-    <header class="border-b border-cyber-border bg-cyber-card/90 backdrop-blur-md sticky top-0 z-50 w-full">
+    <!-- Top Navigation Header (Aesthetic Deep Black Effect) -->
+    <header class="border-b border-cyber-border bg-[#03050a]/95 shadow-[0_4px_20px_rgba(0,0,0,0.8)] backdrop-blur-md sticky top-0 z-50 w-full">
         <div class="w-full px-4 py-2.5 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <!-- User Profile Photo Avatar -->
@@ -78,7 +78,7 @@
                     <h1 class="text-base sm:text-lg font-mono font-bold tracking-wider text-white flex items-center gap-1">
                         KT CodeWave<span class="text-cyber-accent animate-ping">_</span>
                     </h1>
-                    <p class="text-[11px] sm:text-xs text-cyber-cyan font-mono font-semibold">&gt; Be humble</p>
+                    <p class="text-[11px] sm:text-xs text-cyber-cyan font-mono font-semibold">&gt; Be kind, be blind, be humble</p>
                 </div>
             </div>
 
@@ -114,11 +114,11 @@
                     <span class="text-[10px] font-mono text-cyber-cyan animate-pulse">● DSA ARENA</span>
                 </div>
                 <div id="problemList" class="space-y-1.5 max-h-[260px] overflow-y-auto pr-1">
-                    <!-- 10 Questions Loaded via JS -->
+                    <!-- Loaded via JS -->
                 </div>
             </div>
 
-            <!-- Leaderboard Segment (3 Main + View More Button) -->
+            <!-- Leaderboard Segment (Top 3 Main Screen) -->
             <div class="bg-cyber-card/90 border border-cyber-border rounded-lg p-3.5 backdrop-blur-sm">
                 <div class="flex items-center justify-between mb-3">
                     <h2 class="font-mono text-xs sm:text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
@@ -156,29 +156,28 @@
                         <span class="text-xs font-mono text-cyber-cyan font-bold">38 🔥</span>
                     </div>
 
-                    <!-- Rank 3: Pinki -->
+                    <!-- Rank 3: Alex_Dev -->
                     <div class="flex items-center justify-between p-2 rounded bg-cyber-bg/40 border border-cyber-border">
                         <div class="flex items-center space-x-2.5">
-                            <span class="text-xs font-mono font-bold text-pink-400 w-3">#3</span>
-                            <div class="w-6 h-6 rounded-full bg-pink-500/20 border border-pink-400 flex items-center justify-center text-pink-400 font-bold text-[10px]">P</div>
+                            <span class="text-xs font-mono font-bold text-purple-400 w-3">#3</span>
+                            <div class="w-6 h-6 rounded-full bg-purple-500/20 avatar-frame-pro flex items-center justify-center text-purple-400 font-bold text-[10px]">A</div>
                             <div>
-                                <p class="text-xs font-bold text-white">Pinki</p>
-                                <p class="text-[8px] font-mono text-pink-400">PRO TIER</p>
+                                <p class="text-xs font-bold text-white">Alex_Dev</p>
+                                <p class="text-[8px] font-mono text-purple-400">PRO TIER</p>
                             </div>
                         </div>
-                        <span class="text-xs font-mono text-pink-400 font-bold">31 🔥</span>
+                        <span class="text-xs font-mono text-purple-400 font-bold">28 🔥</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Spotify Audio Lounge (3 Switchable Playlists) -->
+            <!-- Spotify Audio Lounge -->
             <div class="bg-cyber-card/90 border border-cyber-border rounded-lg p-3.5 mt-auto backdrop-blur-sm">
                 <div class="flex items-center justify-between mb-2">
                     <h3 class="font-mono text-xs font-bold text-white flex items-center gap-1.5">
                         <i class="fa-brands text-emerald-400 fa-spotify text-base"></i> Audio Lounge
                     </h3>
                     
-                    <!-- Playlist Dropdown Switcher -->
                     <select id="spotifySelect" onchange="switchPlaylist()" class="bg-cyber-bg text-[10px] font-mono text-cyber-accent border border-cyber-border rounded px-2 py-0.5 outline-none">
                         <option value="https://open.spotify.com/embed/playlist/21nZvdAsKSWgivdm88gevL?utm_source=generator&theme=0">Playlist 1 (Chill)</option>
                         <option value="https://open.spotify.com/embed/playlist/0pDLO4eCSQuymCQPAuDkF6?utm_source=generator&theme=0">Playlist 2 (Focus)</option>
@@ -200,7 +199,6 @@
                 <div class="flex items-center justify-between mb-1.5">
                     <h3 id="probTitle" class="text-base font-bold text-white font-mono">1. Two Sum Problem</h3>
                     
-                    <!-- Live Coding Stopwatch -->
                     <div class="flex items-center space-x-2 bg-cyber-bg px-2.5 py-1 rounded border border-cyber-accent/40 font-mono text-xs">
                         <i class="fa-solid fa-stopwatch text-cyber-accent animate-spin"></i>
                         <span class="text-gray-400 text-[10px]">TIME:</span>
@@ -260,7 +258,7 @@
 
     </main>
 
-    <!-- FULL LEADERBOARD MODAL (10 PLAYERS) -->
+    <!-- FULL LEADERBOARD MODAL (Pinki set at #9) -->
     <div id="leaderboardModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 font-mono">
         <div class="bg-cyber-card border border-cyber-accent rounded-lg p-5 w-full max-w-md shadow-[0_0_25px_rgba(0,255,102,0.2)]">
             <div class="flex justify-between items-center mb-4 border-b border-cyber-border pb-2">
@@ -271,7 +269,7 @@
             </div>
             
             <div id="modalPlayerList" class="space-y-2 max-h-[350px] overflow-y-auto pr-1">
-                <!-- 10 Players Loaded via JS -->
+                <!-- Loaded via JS -->
             </div>
         </div>
     </div>
@@ -339,7 +337,7 @@
         }
         setInterval(drawMatrix, 40);
 
-        // 10 Full Practice Questions
+        // 10 Practice Questions
         const questions = [
             { 
                 id: 1, title: "1. Two Sum Problem", diff: "EASY", 
@@ -403,17 +401,17 @@
             }
         ];
 
-        // 10 Global Players Data
+        // 10 Global Players Data (Pinki at Rank 9)
         const top10Players = [
             { rank: 1, name: "Precious", tier: "DEVELOPER TIER", streak: "45 🔥", color: "text-amber-400" },
             { rank: 2, name: "Kunal (You)", tier: "HACKER TIER", streak: "38 🔥", color: "text-cyber-cyan" },
-            { rank: 3, name: "Pinki", tier: "PRO TIER", streak: "31 🔥", color: "text-pink-400" },
-            { rank: 4, name: "Alex_Dev", tier: "PRO TIER", streak: "24 🔥", color: "text-purple-400" },
-            { rank: 5, name: "CyberNinja", tier: "CODER TIER", streak: "19 🔥", color: "text-cyber-accent" },
-            { rank: 6, name: "CodeMaster", tier: "CODER TIER", streak: "15 🔥", color: "text-cyber-accent" },
-            { rank: 7, name: "ShadowX", tier: "NOOB TIER", streak: "11 🔥", color: "text-gray-300" },
-            { rank: 8, name: "CodeNovice", tier: "NOOB TIER", streak: "5 🔥", color: "text-gray-400" },
-            { rank: 9, name: "ByteRider", tier: "NOOB TIER", streak: "2 🔥", color: "text-gray-400" },
+            { rank: 3, name: "Alex_Dev", tier: "PRO TIER", streak: "28 🔥", color: "text-purple-400" },
+            { rank: 4, name: "CyberNinja", tier: "CODER TIER", streak: "22 🔥", color: "text-cyber-accent" },
+            { rank: 5, name: "CodeMaster", tier: "CODER TIER", streak: "18 🔥", color: "text-cyber-accent" },
+            { rank: 6, name: "ShadowX", tier: "NOOB TIER", streak: "14 🔥", color: "text-gray-300" },
+            { rank: 7, name: "CodeNovice", tier: "NOOB TIER", streak: "10 🔥", color: "text-gray-400" },
+            { rank: 8, name: "ByteRider", tier: "NOOB TIER", streak: "6 🔥", color: "text-gray-400" },
+            { rank: 9, name: "Pinki", tier: "PRO TIER", streak: "4 🔥", color: "text-pink-400" },
             { rank: 10, name: "SyntaxBot", tier: "BOT TIER", streak: "0 🔥", color: "text-gray-500" }
         ];
 
