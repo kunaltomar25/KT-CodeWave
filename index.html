@@ -1,286 +1,321 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KT CodeWave | Modern Coding Arena</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            vscode: {
-              bg: '#1e1e1e',
-              sidebar: '#252526',
-              editor: '#1e1e1e',
-              activity: '#333333',
-              border: '#3c3c3c',
-              accent: '#007acc'
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KT CodeWave | Hacker Arena & Code Labs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#05070a',
+                            card: '#0d1117',
+                            border: '#161b22',
+                            accent: '#00ff66',
+                            cyan: '#00f0ff',
+                            purple: '#7000ff',
+                            pink: '#ff0055'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['Fira Code', 'monospace'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
             }
-          }
         }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-    .font-mono { font-family: 'Fira Code', monospace; }
-    textarea::-webkit-scrollbar, div::-webkit-scrollbar { width: 6px; height: 6px; }
-    textarea::-webkit-scrollbar-thumb, div::-webkit-scrollbar-thumb { background: #424242; border-radius: 3px; }
-    textarea::-webkit-scrollbar-track, div::-webkit-scrollbar-track { background: #1e1e1e; }
-  </style>
+    </script>
+    <style>
+        body {
+            background-color: #05070a;
+            color: #c9d1d9;
+            font-family: 'Inter', sans-serif;
+        }
+        .scanline {
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.3));
+            background-size: 100% 4px;
+        }
+        .glow-accent {
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+        .avatar-frame-dev {
+            border: 2px solid #00ff66;
+            box-shadow: 0 0 12px #00ff66;
+        }
+        .avatar-frame-hacker {
+            border: 2px solid #00f0ff;
+            box-shadow: 0 0 12px #00f0ff;
+        }
+        .avatar-frame-pro {
+            border: 2px solid #7000ff;
+            box-shadow: 0 0 12px #7000ff;
+        }
+    </style>
 </head>
-<body class="bg-vscode-bg text-gray-200 min-h-screen flex flex-col font-sans overflow-x-hidden">
+<body class="min-h-screen flex flex-col scanline">
 
-  <!-- TOP HEADER / NAVIGATION -->
-  <header class="bg-vscode-sidebar border-b border-vscode-border px-3 py-2 flex items-center justify-between sticky top-0 z-40">
-    <!-- Brand Logo & User Profile Avatar -->
-    <div class="flex items-center space-x-3">
-      <!-- Profile Picture / Logo Avatar -->
-      <div class="relative group cursor-pointer">
-        <img id="userAvatar" src="https://i.ibb.co/68v43R7/user-dp.jpg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250'" alt="Kunal Tomar" class="w-9 h-9 rounded-full border-2 border-vscode-accent object-cover shadow-md">
-        <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-vscode-sidebar"></span>
-      </div>
-      <div>
-        <div class="flex items-center space-x-1.5">
-          <span class="text-lg font-extrabold text-blue-400 tracking-wider">KT</span>
-          <span class="text-base font-bold text-gray-100">CodeWave</span>
+    <!-- Top Navigation -->
+    <header class="border-b border-cyber-border bg-cyber-card/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded bg-cyber-accent/10 border border-cyber-accent flex items-center justify-center font-mono font-bold text-cyber-accent text-xl glow-accent">
+                    KT
+                </div>
+                <div>
+                    <h1 class="text-xl font-mono font-bold tracking-wider text-white">KT CodeWave<span class="text-cyber-accent">_</span></h1>
+                    <p class="text-xs text-gray-500 font-mono">Cybernetic Coding & Practice Hub</p>
+                </div>
+            </div>
+
+            <!-- Stats Header -->
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-2 bg-cyber-bg px-3 py-1.5 rounded border border-cyber-border">
+                    <i class="fa-solid font-mono text-amber-400 fa-fire"></i>
+                    <span class="text-xs font-mono text-gray-400">Streak:</span>
+                    <span id="userStreakVal" class="text-sm font-mono font-bold text-amber-400">12 Days</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-cyber-bg px-3 py-1.5 rounded border border-cyber-border">
+                    <i class="fa-solid text-cyber-cyan fa-shield-halved"></i>
+                    <span class="text-xs font-mono text-gray-400">Rank:</span>
+                    <span class="text-xs font-mono font-bold text-cyber-cyan bg-cyber-cyan/10 px-2 py-0.5 rounded border border-cyber-cyan/30">#2 HACKER</span>
+                </div>
+            </div>
         </div>
-        <p class="text-[10px] text-gray-400 leading-none hidden sm:block">Kunal Tomar | Developer Arena</p>
-      </div>
-    </div>
+    </header>
 
-    <!-- Controls Section -->
-    <div class="flex items-center space-x-2 sm:space-x-3">
-      <!-- Problem Selection Dropdown -->
-      <select id="problemSelect" onchange="loadProblem()" class="bg-vscode-bg text-xs sm:text-sm text-gray-200 px-2 py-1.5 rounded border border-vscode-border focus:outline-none focus:border-vscode-accent max-w-[130px] sm:max-w-[200px]">
-        <optgroup label="🟢 Easy">
-          <option value="hello">1. Hello World (Print)</option>
-          <option value="sum">2. Sum of Two Numbers</option>
-          <option value="evenodd">3. Even or Odd Checker</option>
-        </optgroup>
-        <optgroup label="🟡 Medium">
-          <option value="factorial">4. Factorial Calculator</option>
-          <option value="palindrome">5. Palindrome String Check</option>
-          <option value="fibonacci">6. Fibonacci Series Generator</option>
-        </optgroup>
-        <optgroup label="🔴 Hard">
-          <option value="two_sum">7. Two Sum Algorithm</option>
-          <option value="reverse_ll">8. Reverse Linked List (Logic)</option>
-        </optgroup>
-      </select>
+    <!-- Main Workspace -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-      <!-- Language Selector -->
-      <select id="langSelect" onchange="loadProblem()" class="bg-vscode-bg text-xs sm:text-sm text-gray-200 px-2 py-1.5 rounded border border-vscode-border focus:outline-none focus:border-vscode-accent">
-        <option value="html">HTML / CSS / JS</option>
-        <option value="python">Python 3</option>
-        <option value="javascript">JavaScript (Node)</option>
-        <option value="cpp">C++</option>
-        <option value="c">C</option>
-        <option value="java">Java</option>
-      </select>
+        <!-- Left Column: Practice Problems & Leaderboard -->
+        <div class="lg:col-span-4 space-y-6">
 
-      <!-- Run Code Button -->
-      <button onclick="executeCode()" class="bg-vscode-accent hover:bg-blue-600 text-white text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 rounded flex items-center space-x-1.5 transition shadow">
-        <i class="fa-solid fa-play text-xs"></i>
-        <span>Run Code</span>
-      </button>
+            <!-- Practice Sheet Selector -->
+            <div class="bg-cyber-card border border-cyber-border rounded-lg p-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="font-mono text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid text-cyber-accent fa-code-branch"></i> Practice Sheets (10)
+                    </h2>
+                    <span class="text-xs font-mono text-gray-500">DSA / C++ / Py</span>
+                </div>
+                <div id="problemList" class="space-y-2 max-h-[350px] overflow-y-auto pr-1">
+                    <!-- Dynamic Questions Loaded Here -->
+                </div>
+            </div>
 
-      <!-- 3-Dots Settings Menu -->
-      <div class="relative">
-        <button onclick="toggleMenu()" class="p-1.5 text-gray-300 hover:bg-vscode-border rounded transition">
-          <i class="fa-solid fa-ellipsis-vertical text-base"></i>
-        </button>
+            <!-- Leaderboard Segment -->
+            <div class="bg-cyber-card border border-cyber-border rounded-lg p-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="font-mono text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid text-cyber-pink fa-trophy"></i> Leaderboard
+                    </h2>
+                    <span class="text-xs font-mono text-cyber-accent">Live Tiers</span>
+                </div>
+                
+                <div class="space-y-3">
+                    <!-- Rank 1: Precious -->
+                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-bg/60 border border-cyber-accent/40">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs font-mono font-bold text-amber-400 w-4">#1</span>
+                            <div class="w-8 h-8 rounded-full bg-cyber-accent/20 avatar-frame-dev flex items-center justify-center text-cyber-accent font-bold text-xs">
+                                P
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-white">Precious</p>
+                                <p class="text-[10px] font-mono text-cyber-accent">DEVELOPER TIER</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-amber-400 font-bold">45 🔥</span>
+                    </div>
 
-        <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-vscode-sidebar rounded-lg shadow-2xl border border-vscode-border py-1 z-50">
-          <button onclick="openMusicModal()" class="w-full text-left px-3 py-2 text-xs sm:text-sm text-gray-200 hover:bg-vscode-border flex items-center space-x-2">
-            <i class="fa-solid fa-music text-blue-400"></i>
-            <span>Lo-Fi Music Player</span>
-          </button>
-          <button onclick="resetEditor()" class="w-full text-left px-3 py-2 text-xs sm:text-sm text-red-400 hover:bg-vscode-border flex items-center space-x-2">
-            <i class="fa-solid fa-rotate-left"></i>
-            <span>Reset Code</span>
-          </button>
+                    <!-- Rank 2: Kunal (You) -->
+                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-cyan/5 border border-cyber-cyan/40 glow-cyan">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs font-mono font-bold text-gray-300 w-4">#2</span>
+                            <div class="w-8 h-8 rounded-full bg-cyber-cyan/20 avatar-frame-hacker flex items-center justify-center text-cyber-cyan font-bold text-xs">
+                                K
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-white">Kunal <span class="text-[10px] text-cyber-cyan">(You)</span></p>
+                                <p class="text-[10px] font-mono text-cyber-cyan">HACKER TIER</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-cyber-cyan font-bold">38 🔥</span>
+                    </div>
+
+                    <!-- Rank 3: Alex -->
+                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-bg/40 border border-cyber-border">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs font-mono font-bold text-amber-700 w-4">#3</span>
+                            <div class="w-8 h-8 rounded-full bg-purple-500/20 avatar-frame-pro flex items-center justify-center text-purple-400 font-bold text-xs">
+                                A
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-gray-300">Alex_Dev</p>
+                                <p class="text-[10px] font-mono text-purple-400">PRO TIER</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-gray-400">24 🔥</span>
+                    </div>
+
+                    <!-- Rank 4: CodeNovice -->
+                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-bg/40 border border-cyber-border opacity-70">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs font-mono text-gray-500 w-4">#4</span>
+                            <div class="w-8 h-8 rounded-full bg-gray-700/30 border border-gray-600 flex items-center justify-center text-gray-400 font-bold text-xs">
+                                C
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-gray-400">CodeNovice</p>
+                                <p class="text-[10px] font-mono text-gray-500">NOOB TIER</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">5 🔥</span>
+                    </div>
+
+                    <!-- Rank 5: AutoBot -->
+                    <div class="flex items-center justify-between p-2.5 rounded bg-cyber-bg/40 border border-cyber-border opacity-50">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs font-mono text-gray-600 w-4">#5</span>
+                            <div class="w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-500 font-bold text-xs">
+                                B
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-gray-500">SyntaxBot</p>
+                                <p class="text-[10px] font-mono text-gray-600">BOT TIER</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-gray-600">0 🔥</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </div>
-    </div>
-  </header>
 
-  <!-- WORKSPACE GRID (RESPONSIVE AUTO-RATIO) -->
-  <main class="flex-1 flex flex-col md:flex-row w-full p-2 gap-2 overflow-hidden">
-    
-    <!-- LEFT PANEL: Problem Details & Code Editor -->
-    <section class="w-full md:w-1/2 flex flex-col bg-vscode-sidebar rounded border border-vscode-border overflow-hidden h-[50vh] md:h-[calc(100vh-70px)]">
-      
-      <!-- Problem Info Bar -->
-      <div id="problemHeader" class="bg-[#2d2d2d] px-3 py-1.5 border-b border-vscode-border flex items-center justify-between text-xs text-gray-300">
-        <span class="font-semibold text-blue-400 flex items-center space-x-1">
-          <i class="fa-solid fa-code"></i>
-          <span id="probTitle">1. Hello World</span>
-        </span>
-        <span id="probDiff" class="px-2 py-0.5 text-[10px] font-bold rounded bg-green-900/60 text-green-300 border border-green-700">EASY</span>
-      </div>
+        <!-- Right Column: Code Editor & Spotify Lounge -->
+        <div class="lg:col-span-8 space-y-6 flex flex-col">
 
-      <!-- Problem Statement Description -->
-      <div id="probDesc" class="bg-[#1e1e1e] p-2.5 text-xs text-gray-300 border-b border-vscode-border leading-relaxed max-h-24 overflow-y-auto">
-        Write a program to display "Hello, World!" to the console output screen.
-      </div>
+            <!-- Problem Context Display -->
+            <div id="problemDetail" class="bg-cyber-card border border-cyber-border rounded-lg p-4">
+                <h3 id="probTitle" class="text-lg font-bold text-white mb-2 font-mono">1. Two Sum Problem</h3>
+                <p id="probDesc" class="text-sm text-gray-400 mb-3">Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.</p>
+                <div class="flex items-center gap-2">
+                    <span id="probDiff" class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">EASY</span>
+                    <span class="text-xs font-mono text-gray-500">Target Time: O(N)</span>
+                </div>
+            </div>
 
-      <!-- Textarea Code Editor -->
-      <div class="flex-1 relative flex flex-col">
-        <div class="bg-vscode-sidebar px-3 py-1 text-[11px] text-gray-400 border-b border-vscode-border flex justify-between">
-          <span>MAIN EDITOR</span>
-          <span id="fileExt">main.html</span>
+            <!-- Code Editor Box -->
+            <div class="bg-cyber-card border border-cyber-border rounded-lg overflow-hidden flex-1 flex flex-col">
+                <div class="bg-cyber-bg border-b border-cyber-border px-4 py-2 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                        <span class="text-xs font-mono text-gray-400 ml-2">editor.cpp</span>
+                    </div>
+                    <select id="langSelect" class="bg-cyber-card border border-cyber-border text-xs font-mono text-cyber-accent rounded px-2 py-1 outline-none">
+                        <option>C++ 20</option>
+                        <option>Python 3</option>
+                        <option>Java 17</option>
+                        <option>C11</option>
+                    </select>
+                </div>
+                <textarea id="codeEditor" class="w-full flex-1 min-h-[260px] bg-cyber-bg p-4 font-mono text-sm text-green-400 focus:outline-none resize-none" spellcheck="false">// KT CodeWave Workspace
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    cout << "Welcome to KT CodeWave Arena!" << endl;
+    return 0;
+}</textarea>
+                <div class="bg-cyber-bg border-t border-cyber-border p-3 flex items-center justify-between">
+                    <button onclick="runCode()" class="px-4 py-2 rounded bg-cyber-accent text-black font-mono font-bold text-xs hover:bg-emerald-400 transition flex items-center gap-2">
+                        <i class="fa-solid fa-play"></i> RUN CODE
+                    </button>
+                    <span id="editorStatus" class="text-xs font-mono text-gray-500">Ready to execute</span>
+                </div>
+            </div>
+
+            <!-- Embedded Spotify Audio Lounge -->
+            <div class="bg-cyber-card border border-cyber-border rounded-lg p-4">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-mono text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-brands text-emerald-400 fa-spotify text-lg"></i> Coding Audio Lounge (Live Spotify Playlist)
+                    </h3>
+                    <span class="text-[10px] font-mono text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded">CUSTOM PLAYLIST</span>
+                </div>
+                <div class="w-full rounded-lg overflow-hidden border border-cyber-border">
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/21nZvdAsKSWgivdm88gevL?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+            </div>
+
         </div>
-        <textarea id="codeEditor" spellcheck="false" class="flex-1 w-full bg-vscode-editor text-gray-100 p-3 font-mono text-xs sm:text-sm border-none focus:outline-none resize-none leading-relaxed tracking-wide" placeholder="Write your code here..."></textarea>
-      </div>
-    </section>
 
-    <!-- RIGHT PANEL: Output Screen / Preview -->
-    <section class="w-full md:w-1/2 flex flex-col bg-vscode-sidebar rounded border border-vscode-border overflow-hidden h-[45vh] md:h-[calc(100vh-70px)]">
-      
-      <div class="bg-[#2d2d2d] px-3 py-1.5 border-b border-vscode-border flex justify-between items-center text-xs text-gray-300">
-        <span class="font-semibold text-gray-200 flex items-center space-x-1.5">
-          <i class="fa-solid fa-terminal text-green-400"></i>
-          <span>OUTPUT CONSOLE</span>
-        </span>
-        <button onclick="clearConsole()" class="text-[10px] text-gray-400 hover:text-white bg-vscode-border px-2 py-0.5 rounded">Clear</button>
-      </div>
+    </main>
 
-      <!-- Dynamic View Toggle (Iframe vs Terminal Output) -->
-      <div class="flex-1 relative bg-[#181818]">
-        <!-- HTML Live Preview Frame -->
-        <iframe id="htmlPreview" class="w-full h-full bg-white hidden"></iframe>
-
-        <!-- Console / Terminal Output Container -->
-        <div id="consoleTerminal" class="w-full h-full p-3 font-mono text-xs sm:text-sm text-green-400 overflow-y-auto whitespace-pre-wrap leading-relaxed">
-          <div class="text-gray-500 italic">Press "Run Code" button to execute and display output here...</div>
+    <!-- Footer -->
+    <footer class="border-t border-cyber-border bg-cyber-card py-4 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center font-mono text-xs text-gray-500">
+            KT CodeWave &copy; 2026 | Built for Developers, Hackers & Coders
         </div>
-      </div>
-    </section>
+    </footer>
 
-  </main>
+    <script>
+        const questions = [
+            { id: 1, title: "1. Two Sum Problem", diff: "EASY", desc: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target." },
+            { id: 2, title: "2. Reverse Linked List", diff: "EASY", desc: "Given the head of a singly linked list, reverse the list, and return the reversed list." },
+            { id: 3, title: "3. Valid Parentheses", diff: "EASY", desc: "Determine if the input string containing brackets '()[]{}' is valid in correct order." },
+            { id: 4, title: "4. Binary Tree Traversal", diff: "MEDIUM", desc: "Perform Inorder, Preorder, and Postorder traversals on a binary tree iteratively." },
+            { id: 5, title: "5. Longest Substring Without Repeating", diff: "MEDIUM", desc: "Find the length of the longest substring without repeating characters." },
+            { id: 6, title: "6. 0/1 Knapsack Problem", diff: "MEDIUM", desc: "Given weights and values of N items, put these items in a knapsack of capacity W to get the maximum total value." },
+            { id: 7, title: "7. Rotate Matrix 90 Degrees", diff: "MEDIUM", desc: "Rotate an N x N 2D matrix representing an image by 90 degrees clockwise in-place." },
+            { id: 8, title: "8. LRU Cache Implementation", diff: "HARD", desc: "Design a data structure that follows the constraints of a Least Recently Used (LRU) cache." },
+            { id: 9, title: "9. Palindrome Partitioning", diff: "HARD", desc: "Given a string s, partition s such that every substring of the partition is a palindrome." },
+            { id: 10, title: "10. Word Search in Matrix (Trie)", diff: "HARD", desc: "Given an m x n board of characters and a list of strings words, return all words on the board using Trie." }
+        ];
 
-  <!-- LO-FI BACKGROUND MUSIC MODAL -->
-  <div id="musicModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-vscode-sidebar rounded-lg border border-vscode-border p-5 w-full max-w-sm shadow-2xl">
-      <div class="flex justify-between items-center mb-3">
-        <h3 class="text-sm font-bold text-gray-100 flex items-center space-x-2">
-          <i class="fa-solid fa-headphones text-vscode-accent"></i>
-          <span>KT Coding Lo-Fi Beats</span>
-        </h3>
-        <button onclick="closeMusicModal()" class="text-gray-400 hover:text-white text-lg">&times;</button>
-      </div>
-      <div class="space-y-3">
-        <audio id="audioPlayer" controls class="w-full">
-          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        </audio>
-        <p class="text-[11px] text-gray-400 text-center">Focus & Code with uninterrupted background ambient music.</p>
-      </div>
-    </div>
-  </div>
+        function loadQuestions() {
+            const listContainer = document.getElementById('problemList');
+            listContainer.innerHTML = '';
+            questions.forEach((q, idx) => {
+                const diffColor = q.diff === 'EASY' ? 'text-emerald-400' : q.diff === 'MEDIUM' ? 'text-amber-400' : 'text-red-400';
+                listContainer.innerHTML += `
+                    <div onclick="selectQuestion(${idx})" class="p-2.5 rounded bg-cyber-bg/60 border border-cyber-border hover:border-cyber-accent cursor-pointer transition flex items-center justify-between">
+                        <span class="text-xs font-mono text-gray-300 truncate">${q.title}</span>
+                        <span class="text-[10px] font-mono ${diffColor}">${q.diff}</span>
+                    </div>
+                `;
+            });
+        }
 
-  <!-- JAVASCRIPT APP LOGIC -->
-  <script>
-    // Embedded Base64 Profile Picture fallback
-    const userDpBase64 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUTExMVFhUXGRoXGBgYGB8aGBoaHxoeGCAaGB0aHSggGh0lGx0dITEhJSkrLi4uGyA1ODMtNygtLisBCgoKDg0OGxAQGy8mICUtLTUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/";
+        function selectQuestion(index) {
+            const q = questions[index];
+            document.getElementById('probTitle').innerText = q.title;
+            document.getElementById('probDesc').innerText = q.desc;
+            document.getElementById('probDiff').innerText = q.diff;
+        }
 
-    // Questions Database
-    const problems = {
-      hello: {
-        title: "1. Hello World",
-        diff: "EASY",
-        desc: "Write a program to display 'Hello, World!' on the screen.",
-        code: {
-          html: "<!DOCTYPE html>\n<html>\n<head>\n  <style>body { background: #111; color: #0f0; font-family: monospace; text-align: center; padding-top: 50px; }</style>\n</head>\n<body>\n  <h1>Hello, World!</h1>\n</body>\n</html>",
-          python: '# Write Python 3 Code\nprint("Hello, World!")',
-          javascript: '// JavaScript Node Execution\nconsole.log("Hello, World!");',
-          cpp: '// C++ Solution\n#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello, World!" << endl;\n    return 0;\n}',
-          c: '// C Solution\n#include <stdio.h>\n\nint main() {\n    printf("Hello, World!\\n");\n    return 0;\n}',
-          java: '// Java Solution\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}'
+        function runCode() {
+            const status = document.getElementById('editorStatus');
+            status.innerText = "Executing test cases...";
+            status.className = "text-xs font-mono text-amber-400 animate-pulse";
+            setTimeout(() => {
+                status.innerText = "All Test Cases Passed! (+10 XP)";
+                status.className = "text-xs font-mono text-cyber-accent";
+            }, 1200);
         }
-      },
-      sum: {
-        title: "2. Sum of Two Numbers",
-        diff: "EASY",
-        desc: "Calculate the sum of two integer values (e.g., a = 15, b = 25).",
-        code: {
-          html: "<!DOCTYPE html>\n<html>\n<body>\n  <h2>Sum Calculator</h2>\n  <p id='res'></p>\n  <script>\n    let a = 15, b = 25;\n    document.getElementById('res').innerText = 'Sum = ' + (a + b);\n  <\/script>\n</body>\n</html>",
-          python: "a = 15\nb = 25\nprint(f'Sum of {a} and {b} = {a + b}')",
-          javascript: "const a = 15;\nconst b = 25;\nconsole.log(`Sum: ${a + b}`);",
-          cpp: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 15, b = 25;\n    cout << "Sum = " << (a + b) << endl;\n    return 0;\n}',
-          c: '#include <stdio.h>\n\nint main() {\n    int a = 15, b = 25;\n    printf("Sum = %d\\n", a + b);\n    return 0;\n}',
-          java: 'public class Main {\n    public static void main(String[] args) {\n        int a = 15, b = 25;\n        System.out.println("Sum = " + (a + b));\n    }\n}'
-        }
-      },
-      evenodd: {
-        title: "3. Even or Odd Checker",
-        diff: "EASY",
-        desc: "Write a program to check if a number (n = 42) is Even or Odd.",
-        code: {
-          html: "<h3>Even/Odd Result:</h3>\n<script>\n  let num = 42;\n  document.write(num + ' is ' + (num % 2 === 0 ? 'EVEN' : 'ODD'));\n<\/script>",
-          python: "num = 42\nif num % 2 == 0:\n    print(f'{num} is Even')\nelse:\n    print(f'{num} is Odd')",
-          javascript: "let num = 42;\nconsole.log(num % 2 === 0 ? 'Even' : 'Odd');",
-          cpp: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int num = 42;\n    if(num % 2 == 0) cout << num << " is Even";\n    else cout << num << " is Odd";\n    return 0;\n}',
-          c: '#include <stdio.h>\n\nint main() {\n    int num = 42;\n    if(num % 2 == 0) printf("%d is Even\\n", num);\n    else printf("%d is Odd\\n", num);\n    return 0;\n}',
-          java: 'public class Main {\n    public static void main(String[] args) {\n        int num = 42;\n        System.out.println(num % 2 == 0 ? "Even" : "Odd");\n    }\n}'
-        }
-      },
-      factorial: {
-        title: "4. Factorial Calculator",
-        diff: "MEDIUM",
-        desc: "Compute the factorial of a given number n (n = 5 -> 5*4*3*2*1 = 120).",
-        code: {
-          html: "<script>\nfunction fact(n){ return n<=1 ? 1 : n*fact(n-1); }\ndocument.write('Factorial of 5 = ' + fact(5));\n<\/script>",
-          python: "def factorial(n):\n    return 1 if n <= 1 else n * factorial(n - 1)\n\nprint('Factorial of 5:', factorial(5))",
-          javascript: "function factorial(n) {\n    return n <= 1 ? 1 : n * factorial(n - 1);\n}\nconsole.log('Factorial of 5:', factorial(5));",
-          cpp: '#include <iostream>\nusing namespace std;\n\nint fact(int n) {\n    return (n <= 1) ? 1 : n * fact(n - 1);\n}\n\nint main() {\n    cout << "Factorial of 5 = " << fact(5) << endl;\n    return 0;\n}',
-          c: '#include <stdio.h>\n\nint fact(int n) {\n    return (n <= 1) ? 1 : n * fact(n - 1);\n}\n\nint main() {\n    printf("Factorial of 5 = %d\\n", fact(5));\n    return 0;\n}',
-          java: 'public class Main {\n    static int fact(int n) { return (n <= 1) ? 1 : n * fact(n - 1); }\n    public static void main(String[] args) {\n        System.out.println("Factorial of 5 = " + fact(5));\n    }\n}'
-        }
-      },
-      palindrome: {
-        title: "5. Palindrome String Check",
-        diff: "MEDIUM",
-        desc: "Check whether a given word (str = 'madam') reads the same backward as forward.",
-        code: {
-          html: "<script>\nlet str = 'madam';\nlet rev = str.split('').reverse().join('');\ndocument.write(str + ' is Palindrome: ' + (str === rev));\n<\/script>",
-          python: "word = 'madam'\nis_palindrome = word == word[::-1]\nprint(f'{word} is Palindrome: {is_palindrome}')",
-          javascript: "const word = 'madam';\nconst isPalindrome = word === word.split('').reverse().join('');\nconsole.log(`${word} is Palindrome: ${isPalindrome}`);",
-          cpp: '#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    string str = "madam", rev = str;\n    reverse(rev.begin(), rev.end());\n    cout << str << " is Palindrome: " << (str == rev ? "True" : "False") << endl;\n    return 0;\n}',
-          c: '#include <stdio.h>\n#include <string.h>\n\nint main() {\n    char str[] = "madam";\n    int len = strlen(str), isPal = 1;\n    for(int i = 0; i < len/2; i++) {\n        if(str[i] != str[len-i-1]) { isPal = 0; break; }\n    }\n    printf("%s is Palindrome: %s\\n", str, isPal ? "True" : "False");\n    return 0;\n}',
-          java: 'public class Main {\n    public static void main(String[] args) {\n        String str = "madam";\n        String rev = new StringBuilder(str).reverse().toString();\n        System.out.println(str + " is Palindrome: " + str.equals(rev));\n    }\n}'
-        }
-      },
-      fibonacci: {
-        title: "6. Fibonacci Series",
-        diff: "MEDIUM",
-        desc: "Generate the first 8 numbers in Fibonacci series (0, 1, 1, 2, 3, 5, 8, 13).",
-        code: {
-          html: "<script>\nlet a=0, b=1;\ndocument.write(a + ', ' + b);\nfor(let i=2; i<8; i++){\n  let c = a + b;\n  document.write(', ' + c);\n  a = b; b = c;\n}\n<\/script>",
-          python: "a, b = 0, 1\nseries = []\nfor _ in range(8):\n    series.append(str(a))\n    a, b = b, a + b\nprint('Fibonacci:', ', '.join(series))",
-          javascript: "let a = 0, b = 1, res = [];\nfor(let i = 0; i < 8; i++) {\n    res.push(a);\n    [a, b] = [b, a + b];\n}\nconsole.log('Fibonacci:', res.join(', '));",
-          cpp: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 0, b = 1, c;\n    cout << a << " " << b << " ";\n    for(int i = 2; i < 8; i++) {\n        c = a + b;\n        cout << c << " ";\n        a = b; b = c;\n    }\n    return 0;\n}',
-          c: '#include <stdio.h>\n\nint main() {\n    int a = 0, b = 1, c;\n    printf("%d %d ", a, b);\n    for(int i = 2; i < 8; i++) {\n        c = a + b;\n        printf("%d ", c);\n        a = b; b = c;\n    }\n    return 0;\n}',
-          java: 'public class Main {\n    public static void main(String[] args) {\n        int a = 0, b = 1;\n        System.out.print(a + " " + b + " ");\n        for(int i = 2; i < 8; i++) {\n            int c = a + b;\n            System.out.print(c + " ");\n            a = b; b = c;\n        }\n    }\n}'
-        }
-      },
-      two_sum: {
-        title: "7. Two Sum Algorithm",
-        diff: "HARD",
-        desc: "Find indices of two numbers in array [2, 7, 11, 15] that add up to target = 9.",
-        code: {
-          html: "<script>\nlet nums = [2, 7, 11, 15], target = 9;\nfor(let i=0; i<nums.length; i++){\n  for(let j=i+1; j<nums.length; j++){\n    if(nums[i] + nums[j] === target) {\n      document.write('Indices: [' + i + ', ' + j + ']');\n    }\n  }\n}\n<\/script>",
-          python: "def two_sum(nums, target):\n    lookup = {}\n    for i, num in enumerate(nums):\n        diff = target - num\n        if diff in lookup:\n            return [lookup[diff], i]\n        lookup[num] = i\n\nprint('Indices:', two_sum([2, 7, 11, 15], 9))",
-          javascript: "function twoSum(nums, target) {\n    let map = new Map();\n    for(let i=0; i<nums.length; i++) {\n        let diff = target - nums[i];\n        if(map.has(diff)) return [map.get(diff), i];\n        map.set(nums[i], i);\n    }\n}\nconsole.log('Indices:', twoSum([2, 7, 11, 15], 9));",
-          cpp: '#include <iostream>\n#include <vector>\n#include <unordered_map>\nusing namespace std;\n\nint main() {\n    vector<int> nums = {2, 7, 11, 15};\n    int target = 9;\n    unordered_map<int, int> mp;\n    for(int i = 0; i < nums.size(); i++) {\n        int diff = target - nums[i];\n        if(mp.count(diff)) {\n            cout << "Indices: [" << mp[diff] << ", " << i << "]" << endl;\n            break;\n        }\n        mp[nums[i]] = i;\n    }\n    return 0;\n}',
-          c: '#include <stdio.h>\n\nint main() {\n    int nums[] = {2, 7, 11, 15}, target = 9;\n    for(int i = 0; i < 4; i++) {\n        for(int j = i + 1; j < 4; j++) {\n            if(nums[i] + nums[j] == target) {\n                printf("Indices: [%d, %d]\\n", i, j);\n                return 0;\n            }\n        }\n    }\n    return 0;\n}',
-          java: 'import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        int[] nums = {2, 7, 11, 15}; int target = 9;\n        Map<Integer, Integer> map = new HashMap<>();\n        for(int i = 0; i < nums.length; i++) {\n            int diff = target - nums[i];\n            if(map.containsKey(diff)) {\n                System.out.println("Indices: [" + map.get(diff) + ", " + i + "]");\n                break;\n            }\n            map.put(nums[i], i);\n        }\n    }\n}'
-        }
-      },
-      reverse_ll: {
-   
+
+        loadQuestions();
+    </script>
+</body>
+</html>
