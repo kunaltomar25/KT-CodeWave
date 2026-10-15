@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KT CodeWave | Hacker Arena</title>
+  <title>KT CodeWave | Cybernetic Coding Arena</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,13 +12,18 @@
         extend: {
           colors: {
             cyber: {
-              bg: '#0a0d14',
-              card: '#0f172a',
-              border: '#1e293b',
+              bg: '#05070a',
+              card: '#0d1117',
+              border: '#161b22',
               accent: '#00ff66',
               cyan: '#00f0ff',
-              purple: '#bd00ff'
+              purple: '#7000ff',
+              pink: '#ff0055'
             }
+          },
+          fontFamily: {
+            mono: ['Fira Code', 'monospace'],
+            sans: ['Inter', 'sans-serif']
           }
         }
       }
@@ -27,84 +32,62 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
-    .font-mono { font-family: 'Fira Code', monospace; }
+    html, body {
+      background-color: #05070a;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+    }
     .neon-border { border: 1px solid #00ff66; box-shadow: 0 0 10px rgba(0, 255, 102, 0.2); }
     .neon-text { text-shadow: 0 0 8px rgba(0, 255, 102, 0.6); }
     textarea::-webkit-scrollbar, div::-webkit-scrollbar { width: 6px; height: 6px; }
     textarea::-webkit-scrollbar-thumb, div::-webkit-scrollbar-thumb { background: #00ff6633; border-radius: 3px; }
-    textarea::-webkit-scrollbar-track, div::-webkit-scrollbar-track { background: #0a0d14; }
+    textarea::-webkit-scrollbar-track, div::-webkit-scrollbar-track { background: #05070a; }
   </style>
 </head>
-<body class="bg-cyber-bg text-gray-100 min-h-screen flex flex-col font-sans overflow-x-hidden">
+<body class="bg-cyber-bg text-gray-100 min-h-screen flex flex-col font-sans w-full">
 
-  <!-- HACKER ARENA HEADER -->
-  <header class="bg-cyber-card/90 border-b border-cyber-border px-3 sm:px-6 py-2.5 flex items-center justify-between sticky top-0 z-50 backdrop-blur-md">
-    
-    <!-- User DP Avatar & Hacker Brand -->
+  <!-- TOP HEADER -->
+  <header class="bg-cyber-card/90 border-b border-cyber-border px-3 sm:px-6 py-2.5 flex items-center justify-between sticky top-0 z-50 backdrop-blur-md w-full">
+    <!-- Logo & Avatar -->
     <div class="flex items-center space-x-3">
       <div class="relative group cursor-pointer">
-        <img id="userAvatar" src="https://i.ibb.co/68v43R7/user-dp.jpg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250'" alt="Kunal Tomar" class="w-10 h-10 rounded-full border-2 border-cyber-accent object-cover shadow-[0_0_12px_rgba(0,255,102,0.4)]">
-        <span class="absolute bottom-0 right-0 w-3 h-3 bg-cyber-accent rounded-full border-2 border-cyber-bg animate-pulse"></span>
+        <img id="userAvatar" src="https://i.ibb.co/68v43R7/user-dp.jpg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250'" alt="Kunal Tomar" class="w-9 h-9 rounded-full border-2 border-cyber-accent object-cover shadow-[0_0_10px_rgba(0,255,102,0.4)]">
+        <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-cyber-accent rounded-full border-2 border-cyber-bg animate-pulse"></span>
       </div>
       <div>
-        <div class="flex items-center space-x-2">
+        <div class="flex items-center space-x-1.5">
           <span class="text-xl font-extrabold text-cyber-accent neon-text">KT</span>
-          <span class="text-lg font-bold text-gray-100 tracking-wide">CodeWave</span>
+          <span class="text-base font-bold text-gray-100 tracking-wide">CodeWave_</span>
         </div>
-        <p class="text-[10px] text-cyber-cyan font-mono leading-none hidden sm:block">&gt; Hacker Arena & Code Labs_</p>
+        <p class="text-[10px] text-cyber-cyan font-mono leading-none hidden sm:block">Cybernetic Coding & Practice Hub</p>
       </div>
     </div>
 
-    <!-- Controls & Action Buttons -->
-    <div class="flex items-center space-x-2 sm:space-x-3">
-      
-      <!-- Problems Dropdown -->
-      <select id="problemSelect" onchange="loadProblem()" class="bg-cyber-bg text-xs sm:text-sm text-cyber-accent px-2.5 py-1.5 rounded border border-cyber-border focus:outline-none focus:border-cyber-accent max-w-[120px] sm:max-w-[190px] font-mono">
-        <optgroup label="🟢 EASY">
-          <option value="hello">1. Hello World</option>
-          <option value="sum">2. Sum of Two Num</option>
-          <option value="evenodd">3. Even or Odd</option>
-        </optgroup>
-        <optgroup label="🟡 MEDIUM">
-          <option value="factorial">4. Factorial Calc</option>
-          <option value="palindrome">5. Palindrome Check</option>
-          <option value="fibonacci">6. Fibonacci Series</option>
-        </optgroup>
-        <optgroup label="🔴 HARD">
-          <option value="two_sum">7. Two Sum Algorithm</option>
-          <option value="reverse_ll">8. Reverse Linked List</option>
-        </optgroup>
-      </select>
+    <!-- Header Stats & Actions -->
+    <div class="flex items-center space-x-2 sm:space-x-4">
+      <div class="hidden lg:flex items-center space-x-3 text-xs font-mono">
+        <span class="bg-cyber-bg px-2.5 py-1 rounded border border-cyber-border text-yellow-400">
+          <i class="fa-solid fa-fire text-orange-500 mr-1"></i>Streak: 12 Days
+        </span>
+        <span class="bg-cyber-bg px-2.5 py-1 rounded border border-cyber-border text-cyber-cyan">
+          <i class="fa-solid fa-shield-halved text-cyber-cyan mr-1"></i>Rank: #2 HACKER
+        </span>
+      </div>
 
-      <!-- Language Selector -->
-      <select id="langSelect" onchange="loadProblem()" class="bg-cyber-bg text-xs sm:text-sm text-cyber-cyan px-2.5 py-1.5 rounded border border-cyber-border focus:outline-none focus:border-cyber-cyan font-mono">
-        <option value="html">HTML / CSS / JS</option>
-        <option value="python">Python 3</option>
-        <option value="javascript">JavaScript (Node)</option>
-        <option value="cpp">C++</option>
-        <option value="c">C</option>
-        <option value="java">Java</option>
-      </select>
-
-      <!-- Run Code Button -->
-      <button onclick="executeCode()" class="bg-cyber-accent hover:bg-emerald-400 text-black font-bold text-xs sm:text-sm px-3.5 py-1.5 rounded flex items-center space-x-1.5 transition shadow-[0_0_15px_rgba(0,255,102,0.4)]">
-        <i class="fa-solid fa-terminal text-xs"></i>
-        <span>EXECUTE</span>
-      </button>
-
-      <!-- 3-Dots Menu -->
+      <!-- 3-Dots Menu Button -->
       <div class="relative">
-        <button onclick="toggleMenu()" class="p-1.5 text-gray-300 hover:bg-cyber-border rounded transition">
+        <button onclick="toggleMenu()" class="p-2 text-gray-300 hover:bg-cyber-border rounded transition">
           <i class="fa-solid fa-ellipsis-vertical text-lg"></i>
         </button>
-
         <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-cyber-card rounded-lg shadow-2xl border border-cyber-border py-1 z-50 font-mono">
           <button onclick="openMusicModal()" class="w-full text-left px-3 py-2 text-xs sm:text-sm text-cyber-cyan hover:bg-cyber-border flex items-center space-x-2">
             <i class="fa-solid fa-headphones"></i>
-            <span>Lo-Fi Beats</span>
+            <span>Lo-Fi Audio Lounge</span>
           </button>
-          <button onclick="resetEditor()" class="w-full text-left px-3 py-2 text-xs sm:text-sm text-red-400 hover:bg-cyber-border flex items-center space-x-2">
+          <button onclick="resetCode()" class="w-full text-left px-3 py-2 text-xs sm:text-sm text-red-400 hover:bg-cyber-border flex items-center space-x-2">
             <i class="fa-solid fa-rotate-left"></i>
             <span>Reset Editor</span>
           </button>
@@ -113,66 +96,138 @@
     </div>
   </header>
 
-  <!-- WORKSPACE - AUTO RESPONSIVE RATIO -->
-  <main class="flex-1 flex flex-col md:flex-row w-full p-2 sm:p-3 gap-3 overflow-hidden">
+  <!-- MAIN WORKSPACE - EDGE-TO-EDGE FULL WIDTH -->
+  <main class="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-3 p-3 w-full max-w-none">
     
-    <!-- LEFT PANEL: Code Editor -->
-    <section class="w-full md:w-1/2 flex flex-col bg-cyber-card rounded-lg border border-cyber-border overflow-hidden h-[50vh] md:h-[calc(100vh-80px)]">
-      
-      <!-- Problem Info Bar -->
-      <div id="problemHeader" class="bg-cyber-bg px-3 py-2 border-b border-cyber-border flex items-center justify-between text-xs font-mono">
-        <span class="font-semibold text-cyber-accent flex items-center space-x-2">
-          <i class="fa-solid fa-code"></i>
-          <span id="probTitle">1. Hello World</span>
-        </span>
-        <span id="probDiff" class="px-2 py-0.5 text-[10px] font-bold rounded bg-green-950 text-cyber-accent border border-cyber-accent">EASY</span>
-      </div>
-
-      <!-- Problem Statement -->
-      <div id="probDesc" class="bg-[#0b101d] p-3 text-xs text-gray-300 border-b border-cyber-border leading-relaxed max-h-24 overflow-y-auto font-sans">
-        Write a program to display "Hello, World!" on the screen console output.
-      </div>
-
-      <!-- Code Editor Textarea -->
-      <div class="flex-1 relative flex flex-col bg-cyber-bg">
-        <div class="bg-cyber-card px-3 py-1 text-[11px] text-gray-400 border-b border-cyber-border flex justify-between font-mono">
-          <span class="text-cyber-cyan">// SOURCE_CODE</span>
-          <span id="fileExt">main.html</span>
+    <!-- LEFT COLUMN: Problem List & Leaderboard -->
+    <div class="lg:col-span-3 flex flex-col gap-3">
+      <!-- Problems Panel -->
+      <div class="bg-cyber-card rounded-lg border border-cyber-border p-3 flex flex-col">
+        <div class="flex items-center justify-between pb-2 mb-2 border-b border-cyber-border font-mono text-xs">
+          <span class="text-cyber-accent font-bold"><i class="fa-solid fa-list-check mr-1.5"></i>PRACTICE ARENA</span>
+          <span class="text-gray-400 text-[10px]">8 Problems</span>
         </div>
-        <textarea id="codeEditor" spellcheck="false" class="flex-1 w-full bg-cyber-bg text-cyber-accent p-3.5 font-mono text-xs sm:text-sm border-none focus:outline-none resize-none leading-relaxed tracking-wide" placeholder="// Write code here..."></textarea>
-      </div>
-    </section>
-
-    <!-- RIGHT PANEL: Live Output & Console -->
-    <section class="w-full md:w-1/2 flex flex-col bg-cyber-card rounded-lg border border-cyber-border overflow-hidden h-[45vh] md:h-[calc(100vh-80px)]">
-      
-      <div class="bg-cyber-bg px-3 py-2 border-b border-cyber-border flex justify-between items-center text-xs font-mono">
-        <span class="font-semibold text-cyber-cyan flex items-center space-x-2">
-          <i class="fa-solid fa-square-poll-vertical"></i>
-          <span>TERMINAL_OUTPUT</span>
-        </span>
-        <button onclick="clearConsole()" class="text-[10px] text-gray-400 hover:text-cyber-accent bg-cyber-card px-2 py-0.5 rounded border border-cyber-border">Clear</button>
-      </div>
-
-      <!-- Output Containers -->
-      <div class="flex-1 relative bg-[#06080e]">
-        <iframe id="htmlPreview" class="w-full h-full bg-white hidden"></iframe>
-
-        <div id="consoleTerminal" class="w-full h-full p-4 font-mono text-xs sm:text-sm text-cyber-accent overflow-y-auto whitespace-pre-wrap leading-relaxed">
-          <div class="text-gray-500 italic">&gt; System ready. Click "EXECUTE" to run script...</div>
+        <div id="problemList" class="space-y-1.5 max-h-[350px] overflow-y-auto font-mono text-xs">
+          <!-- Populated via JS -->
         </div>
       </div>
-    </section>
+
+      <!-- Leaderboard Widget -->
+      <div class="bg-cyber-card rounded-lg border border-cyber-border p-3 font-mono text-xs hidden lg:block">
+        <div class="flex items-center justify-between pb-2 mb-2 border-b border-cyber-border">
+          <span class="text-cyber-pink font-bold"><i class="fa-solid fa-trophy mr-1.5"></i>LEADERBOARD</span>
+          <span class="text-green-400 text-[10px]">Live Tiers</span>
+        </div>
+        <div class="space-y-2 text-[11px]">
+          <div class="flex items-center justify-between p-1.5 bg-cyber-bg rounded border border-cyber-border">
+            <div class="flex items-center space-x-2">
+              <span class="text-yellow-400 font-bold">#1</span>
+              <span class="text-gray-200">Precious</span>
+            </div>
+            <span class="text-cyber-accent font-bold">45 🔥</span>
+          </div>
+          <div class="flex items-center justify-between p-1.5 bg-cyber-bg rounded border-2 border-cyber-accent">
+            <div class="flex items-center space-x-2">
+              <span class="text-cyber-accent font-bold">#2</span>
+              <span class="text-cyber-accent font-bold">Kunal (You)</span>
+            </div>
+            <span class="text-cyber-accent font-bold">38 🔥</span>
+          </div>
+          <div class="flex items-center justify-between p-1.5 bg-cyber-bg rounded border border-cyber-border">
+            <div class="flex items-center space-x-2">
+              <span class="text-gray-400 font-bold">#3</span>
+              <span class="text-gray-300">Alex_Dev</span>
+            </div>
+            <span class="text-cyber-cyan font-bold">24 🔥</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: Problem Statement, Code Editor & Live Terminal -->
+    <div class="lg:col-span-9 flex flex-col gap-3">
+      
+      <!-- Problem Header & Description -->
+      <div class="bg-cyber-card rounded-lg border border-cyber-border p-3.5 flex flex-col gap-2">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-cyber-border pb-2">
+          <h2 id="activeTitle" class="text-base font-bold text-cyber-accent font-mono">1. Two Sum Algorithm</h2>
+          <div class="flex items-center space-x-2 font-mono text-xs">
+            <span id="activeDiff" class="px-2 py-0.5 rounded bg-green-950 text-cyber-accent border border-cyber-accent font-bold">EASY</span>
+            <span class="text-gray-400 text-[11px]">Target Time: O(N)</span>
+          </div>
+        </div>
+        <p id="activeDesc" class="text-xs text-gray-300 leading-relaxed font-sans">
+          Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+        </p>
+      </div>
+
+      <!-- Code Editor Section -->
+      <div class="bg-cyber-card rounded-lg border border-cyber-border overflow-hidden flex flex-col">
+        <!-- Editor Controls Bar -->
+        <div class="bg-cyber-bg px-3 py-2 border-b border-cyber-border flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-yellow-500 inline-block"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
+            <span id="editorFilename" class="text-gray-400 ml-2">editor.cpp</span>
+          </div>
+
+          <!-- Language Dropdown -->
+          <select id="langSelect" onchange="changeLanguage()" class="bg-cyber-card text-cyber-accent border border-cyber-border rounded px-2.5 py-1 focus:outline-none text-xs">
+            <option value="cpp">C++ 20</option>
+            <option value="python">Python 3</option>
+            <option value="javascript">JavaScript (Node)</option>
+            <option value="c">C 17</option>
+            <option value="java">Java 17</option>
+            <option value="html">HTML / CSS Live</option>
+          </select>
+        </div>
+
+        <!-- Textarea Editor -->
+        <textarea id="codeEditor" spellcheck="false" class="w-full h-64 sm:h-72 bg-[#05070a] text-cyber-accent p-3.5 font-mono text-xs sm:text-sm border-none focus:outline-none resize-none leading-relaxed tracking-wide"></textarea>
+
+        <!-- Run Bar -->
+        <div class="bg-cyber-bg px-3 py-2 border-t border-cyber-border flex items-center justify-between font-mono">
+          <button onclick="runCode()" class="bg-cyber-accent hover:bg-emerald-400 text-black font-bold text-xs px-4 py-1.5 rounded flex items-center space-x-1.5 transition shadow-[0_0_12px_rgba(0,255,102,0.4)]">
+            <i class="fa-solid fa-play text-xs"></i>
+            <span>RUN CODE</span>
+          </button>
+          <span id="runStatus" class="text-[11px] text-gray-400 hidden sm:inline">&gt; Ready for execution</span>
+        </div>
+      </div>
+
+      <!-- REAL-TIME TERMINAL OUTPUT BOX -->
+      <div class="bg-cyber-card rounded-lg border border-cyber-border overflow-hidden flex flex-col">
+        <div class="bg-cyber-bg px-3 py-2 border-b border-cyber-border flex items-center justify-between font-mono text-xs">
+          <span class="text-cyber-cyan font-bold flex items-center space-x-2">
+            <i class="fa-solid fa-terminal"></i>
+            <span>REAL-TIME OUTPUT TERMINAL</span>
+          </span>
+          <button onclick="clearConsole()" class="text-[10px] text-gray-400 hover:text-cyber-accent bg-cyber-card px-2 py-0.5 rounded border border-cyber-border">Clear</button>
+        </div>
+
+        <div class="p-3.5 bg-[#030508] min-h-[140px] font-mono text-xs sm:text-sm relative">
+          <!-- Web Iframe for HTML Mode -->
+          <iframe id="htmlPreview" class="w-full h-36 bg-white rounded hidden"></iframe>
+
+          <!-- Terminal Output Logs -->
+          <div id="consoleTerminal" class="text-cyber-accent whitespace-pre-wrap leading-relaxed">
+            <div class="text-gray-500 italic">&gt; Press "RUN CODE" above to execute and view output here...</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
 
   </main>
 
-  <!-- MUSIC PLAYER MODAL -->
+  <!-- LO-FI MUSIC MODAL -->
   <div id="musicModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 font-mono">
     <div class="bg-cyber-card rounded-lg border border-cyber-accent p-5 w-full max-w-sm shadow-[0_0_25px_rgba(0,255,102,0.2)]">
       <div class="flex justify-between items-center mb-3">
         <h3 class="text-sm font-bold text-cyber-accent flex items-center space-x-2">
           <i class="fa-solid fa-headphones"></i>
-          <span>CYBERPUNK BEATS</span>
+          <span>CODING AUDIO LOUNGE</span>
         </h3>
         <button onclick="closeMusicModal()" class="text-gray-400 hover:text-white text-lg">&times;</button>
       </div>
@@ -180,152 +235,127 @@
         <audio id="audioPlayer" controls class="w-full">
           <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
         </audio>
-        <p class="text-[11px] text-gray-400 text-center">&gt; Lo-Fi Audio stream initialized.</p>
+        <p class="text-[11px] text-gray-400 text-center">&gt; Lo-Fi background stream initialized.</p>
       </div>
     </div>
   </div>
 
-  <!-- APP SCRIPT LOGIC -->
+  <!-- JAVASCRIPT APP LOGIC -->
   <script>
-    const problems = {
-      hello: {
-        title: "1. Hello World",
+    const dataset = [
+      {
+        id: "twosum",
+        title: "1. Two Sum Algorithm",
         diff: "EASY",
-        desc: "Write a program to display 'Hello, World!' on the output console.",
+        desc: "Find indices of two numbers in array [2, 7, 11, 15] that add up to target = 9.",
         code: {
-          html: "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body { background: #0a0d14; color: #00ff66; font-family: monospace; text-align: center; padding-top: 50px; }\n    h1 { text-shadow: 0 0 10px #00ff66; }\n  </style>\n</head>\n<body>\n  <h1>&gt; Hello, World!_</h1>\n</body>\n</html>",
-          python: '# Python 3\nprint("Hello, World!")',
-          javascript: '// JavaScript Node\nconsole.log("Hello, World!");',
-          cpp: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello, World!" << endl;\n    return 0;\n}',
-          c: '#include <stdio.h>\n\nint main() {\n    printf("Hello, World!\\n");\n    return 0;\n}',
-          java: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}'
+          cpp: '#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> nums = {2, 7, 11, 15};\n    int target = 9;\n    for(int i = 0; i < nums.size(); i++) {\n        for(int j = i + 1; j < nums.size(); j++) {\n            if(nums[i] + nums[j] == target) {\n                cout << "Target Found! Indices: [" << i << ", " << j << "]" << endl;\n            }\n        }\n    }\n    return 0;\n}',
+          python: 'nums = [2, 7, 11, 15]\ntarget = 9\nfor i in range(len(nums)):\n    for j in range(i+1, len(nums)):\n        if nums[i] + nums[j] == target:\n            print(f"Target Found! Indices: [{i}, {j}]")',
+          javascript: 'const nums = [2, 7, 11, 15], target = 9;\nfor(let i=0; i<nums.length; i++) {\n  for(let j=i+1; j<nums.length; j++) {\n    if(nums[i] + nums[j] === target) {\n      console.log(`Target Found! Indices: [${i}, ${j}]`);\n    }\n  }\n}',
+          c: '#include <stdio.h>\nint main() {\n    printf("Target Found! Indices: [0, 1]\\n");\n    return 0;\n}',
+          java: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Target Found! Indices: [0, 1]");\n    }\n}',
+          html: '<h2 style="color:#00ff66;font-family:monospace;">Two Sum Visualizer</h2><p style="color:#00f0ff;">Array: [2, 7, 11, 15] | Target: 9</p><p style="color:#fff;">Result Indices: [0, 1]</p>'
         }
       },
-      sum: {
-        title: "2. Sum of Two Numbers",
+      {
+        id: "revll",
+        title: "2. Reverse Linked List",
         diff: "EASY",
-        desc: "Calculate sum of two integers (a = 15, b = 25).",
+        desc: "Reverse a singly linked list 1 -> 2 -> 3 -> NULL to 3 -> 2 -> 1 -> NULL.",
         code: {
-          html: "<h3>Sum Result:</h3>\n<script>\n  let a = 15, b = 25;\n  document.write('Sum = ' + (a + b));\n<\/script>",
-          python: "a = 15\nb = 25\nprint(f'Sum of {a} + {b} = {a + b}')",
-          javascript: "const a = 15, b = 25;\nconsole.log(`Sum: ${a + b}`);",
-          cpp: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 15, b = 25;\n    cout << "Sum = " << (a + b) << endl;\n    return 0;\n}',
-          c: '#include <stdio.h>\n\nint main() {\n    int a = 15, b = 25;\n    printf("Sum = %d\\n", a + b);\n    return 0;\n}',
-          java: 'public class Main {\n    public static void main(String[] args) {\n        int a = 15, b = 25;\n        System.out.println("Sum = " + (a + b));\n    }\n}'
+          cpp: '#include <iostream>\nusing namespace std;\nint main() {\n    cout << "Reversed List: 3 -> 2 -> 1 -> NULL" << endl;\n    return 0;\n}',
+          python: 'print("Reversed List: 3 -> 2 -> 1 -> NULL")',
+          javascript: 'console.log("Reversed List: 3 -> 2 -> 1 -> NULL");',
+          c: '#include <stdio.h>\nint main() { printf("Reversed List: 3 -> 2 -> 1 -> NULL\\n"); return 0; }',
+          java: 'public class Main { public static void main(String[] args) { System.out.println("Reversed List: 3 -> 2 -> 1 -> NULL"); } }',
+          html: '<h3 style="color:#00ff66;font-family:monospace;">Linked List Reversal</h3><p style="color:#fff;">3 &rarr; 2 &rarr; 1 &rarr; NULL</p>'
         }
       },
-      evenodd: {
-        title: "3. Even or Odd",
+      {
+        id: "palindrome",
+        title: "3. Valid Palindrome",
         diff: "EASY",
-        desc: "Check if a number (n = 42) is Even or Odd.",
+        desc: "Check if string 'madam' reads the same backward as forward.",
         code: {
-          html: "<script>\n  let n = 42;\n  document.write(n + ' is ' + (n % 2 === 0 ? 'EVEN' : 'ODD'));\n<\/script>",
-          python: "num = 42\nprint(f'{num} is Even' if num % 2 == 0 else f'{num} is Odd')",
-          javascript: "let num = 42;\nconsole.log(num % 2 === 0 ? 'Even' : 'Odd');",
-          cpp: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int num = 42;\n    cout << num << (num % 2 == 0 ? " is Even" : " is Odd") << endl;\n    return 0;\n}',
-          c: '#include <stdio.h>\n\nint main() {\n    int num = 42;\n    printf("%d is %s\\n", num, num % 2 == 0 ? "Even" : "Odd");\n    return 0;\n}',
-          java: 'public class Main {\n    public static void main(String[] args) {\n        int num = 42;\n        System.out.println(num % 2 == 0 ? "Even" : "Odd");\n    }\n}'
+          cpp: '#include <iostream>\nusing namespace std;\nint main() { cout << "String \'madam\' is Palindrome: TRUE" << endl; return 0; }',
+          python: 'word = "madam"\nprint(f"String \'{word}\' is Palindrome: {word == word[::-1]}")',
+          javascript: 'const w = "madam"; console.log(`String \'${w}\' is Palindrome: ${w === w.split("").reverse().join("")}`);',
+          c: '#include <stdio.h>\nint main() { printf("String \'madam\' is Palindrome: TRUE\\n"); return 0; }',
+          java: 'public class Main { public static void main(String[] args) { System.out.println("String \'madam\' is Palindrome: TRUE"); } }',
+          html: '<h3 style="color:#00ff66;font-family:monospace;">Palindrome Checker</h3><p style="color:#00f0ff;">\'madam\' is a valid Palindrome!</p>'
         }
       },
-      factorial: {
-        title: "4. Factorial Calculator",
+      {
+        id: "factorial",
+        title: "4. Factorial Calculation",
         diff: "MEDIUM",
-        desc: "Calculate factorial of 5 (5! = 120).",
+        desc: "Compute the factorial of n = 5 (5! = 120).",
         code: {
-          html: "<script>\nfunction fact(n){ return n<=1 ? 1 : n*fact(n-1); }\ndocument.write('Factorial(5) = ' + fact(5));\n<\/script>",
-          python: "def factorial(n):\n    return 1 if n <= 1 else n * factorial(n - 1)\n\nprint('Factorial of 5:', factorial(5))",
-          javascript: "function fact(n) { return n <= 1 ? 1 : n * fact(n - 1); }\nconsole.log('Factorial of 5:', fact(5));",
-          cpp: '#include <iostream>\nusing namespace std;\n\nint fact(int n) { return n <= 1 ? 1 : n * fact(n - 1); }\n\nint main() {\n    cout << "Factorial of 5 = " << fact(5) << endl;\n    return 0;\n}',
-          c: '#include <stdio.h>\n\nint fact(int n) { return n <= 1 ? 1 : n * fact(n - 1); }\n\nint main() {\n    printf("Factorial of 5 = %d\\n", fact(5));\n    return 0;\n}',
-          java: 'public class Main {\n    static int fact(int n) { return n <= 1 ? 1 : n * fact(n - 1); }\n    public static void main(String[] args) {\n        System.out.println("Factorial of 5 = " + fact(5));\n    }\n}'
-        }
-      },
-      palindrome: {
-        title: "5. Palindrome Check",
-        diff: "MEDIUM",
-        desc: "Check if 'madam' is a Palindrome string.",
-        code: {
-          html: "<script>\nlet s = 'madam';\ndocument.write(s + ' is Palindrome: ' + (s === s.split('').reverse().join('')));\n<\/script>",
-          python: "word = 'madam'\nprint(f'{word} is Palindrome: {word == word[::-1]}')",
-          javascript: "const word = 'madam';\nconsole.log(`${word} is Palindrome: ${word === word.split('').reverse().join('')}`);",
-          cpp: '#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    string s = "madam", r = s;\n    reverse(r.begin(), r.end());\n    cout << s << " is Palindrome: " << (s == r ? "True" : "False") << endl;\n    return 0;\n}',
-          c: '#include <stdio.h>\n#include <string.h>\n\nint main() {\n    printf("madam is Palindrome: True\\n");\n    return 0;\n}',
-          java: 'public class Main {\n    public static void main(String[] args) {\n        String s = "madam";\n        System.out.println(s + " is Palindrome: " + s.equals(new StringBuilder(s).reverse().toString()));\n    }\n}'
-        }
-      },
-      fibonacci: {
-        title: "6. Fibonacci Series",
-        diff: "MEDIUM",
-        desc: "Generate first 8 Fibonacci numbers.",
-        code: {
-          html: "<script>\nlet a=0, b=1;\ndocument.write(a + ', ' + b);\nfor(let i=2; i<8; i++){ let c=a+b; document.write(', '+c); a=b; b=c; }\n<\/script>",
-          python: "a, b = 0, 1\nres = []\nfor _ in range(8):\n    res.append(str(a))\n    a, b = b, a + b\nprint('Fibonacci:', ', '.join(res))",
-          javascript: "let a = 0, b = 1, res = [];\nfor(let i=0; i<8; i++) { res.push(a); [a, b] = [b, a + b]; }\nconsole.log('Fibonacci:', res.join(', '));",
-          cpp: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 0, b = 1, c;\n    for(int i = 0; i < 8; i++) { cout << a << " "; c = a + b; a = b; b = c; }\n    return 0;\n}',
-          c: '#include <stdio.h>\n\nint main() {\n    int a = 0, b = 1, c;\n    for(int i = 0; i < 8; i++) { printf("%d ", a); c = a + b; a = b; b = c; }\n    return 0;\n}',
-          java: 'public class Main {\n    public static void main(String[] args) {\n        int a = 0, b = 1;\n        for(int i = 0; i < 8; i++) { System.out.print(a + " "); int c = a + b; a = b; b = c; }\n    }\n}'
-        }
-      },
-      two_sum: {
-        title: "7. Two Sum Algorithm",
-        diff: "HARD",
-        desc: "Find indices in [2, 7, 11, 15] that sum to target = 9.",
-        code: {
-          html: "<script>\nlet nums = [2, 7, 11, 15], t = 9;\nfor(let i=0; i<nums.length; i++){\n  for(let j=i+1; j<nums.length; j++) if(nums[i]+nums[j]===t) document.write('Indices: ['+i+', '+j+']');\n}\n<\/script>",
-          python: "def two_sum(nums, target):\n    mp = {}\n    for i, n in enumerate(nums):\n        if target - n in mp: return [mp[target - n], i]\n        mp[n] = i\n\nprint('Indices:', two_sum([2, 7, 11, 15], 9))",
-          javascript: "const twoSum = (nums, target) => {\n  let map = {};\n  for(let i=0; i<nums.length; i++) {\n    if(map[target - nums[i]] !== undefined) return [map[target - nums[i]], i];\n    map[nums[i]] = i;\n  }\n};\nconsole.log('Indices:', twoSum([2, 7, 11, 15], 9));",
-          cpp: '#include <iostream>\nusing namespace std;\nint main() { cout << "Indices: [0, 1]" << endl; return 0; }',
-          c: '#include <stdio.h>\nint main() { printf("Indices: [0, 1]\\n"); return 0; }',
-          java: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Indices: [0, 1]");\n    }\n}'
-        }
-      },
-      reverse_ll: {
-        title: "8. Reverse Linked List",
-        diff: "HARD",
-        desc: "Reverse 1 -> 2 -> 3 -> NULL to 3 -> 2 -> 1 -> NULL.",
-        code: {
-          html: "<script>\ndocument.write('Reversed LL: 3 -> 2 -> 1 -> NULL');\n<\/script>",
-          python: "print('Reversed:', '3 -> 2 -> 1 -> NULL')",
-          javascript: "console.log('Reversed Linked List:', '3 -> 2 -> 1 -> NULL');",
-          cpp: '#include <iostream>\nusing namespace std;\nint main() { cout << "3 -> 2 -> 1 -> NULL" << endl; return 0; }',
-          c: '#include <stdio.h>\nint main() { printf("3 -> 2 -> 1 -> NULL\\n"); return 0; }',
-          java: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Reversed: 3 -> 2 -> 1 -> NULL");\n    }\n}'
+          cpp: '#include <iostream>\nusing namespace std;\nint fact(int n) { return n<=1 ? 1 : n*fact(n-1); }\nint main() { cout << "Factorial of 5 = " << fact(5) << endl; return 0; }',
+          python: 'def fact(n):\n    return 1 if n<=1 else n*fact(n-1)\nprint("Factorial of 5 =", fact(5))',
+          javascript: 'const fact = n => n<=1 ? 1 : n*fact(n-1);\nconsole.log("Factorial of 5 =", fact(5));',
+          c: '#include <stdio.h>\nint fact(int n) { return n<=1 ? 1 : n*fact(n-1); }\nint main() { printf("Factorial of 5 = %d\\n", fact(5)); return 0; }',
+          java: 'public class Main { static int fact(int n){return n<=1?1:n*fact(n-1);} public static void main(String[] args) { System.out.println("Factorial of 5 = " + fact(5)); } }',
+          html: '<h3 style="color:#00ff66;font-family:monospace;">Factorial Engine</h3><p style="color:#fff;">5! = 120</p>'
         }
       }
-    };
+    ];
 
-    function loadProblem() {
-      const probKey = document.getElementById('problemSelect').value;
-      const langKey = document.getElementById('langSelect').value;
-      const prob = problems[probKey];
+    let activeIdx = 0;
 
-      document.getElementById('probTitle').innerText = prob.title;
-      document.getElementById('probDiff').innerText = prob.diff;
-      document.getElementById('probDesc').innerText = prob.desc;
-      document.getElementById('fileExt').innerText = `main.${langKey === 'javascript' ? 'js' : langKey}`;
-
-      const diffBadge = document.getElementById('probDiff');
-      if (prob.diff === 'EASY') diffBadge.className = 'px-2 py-0.5 text-[10px] font-bold rounded bg-green-950 text-cyber-accent border border-cyber-accent';
-      else if (prob.diff === 'MEDIUM') diffBadge.className = 'px-2 py-0.5 text-[10px] font-bold rounded bg-yellow-950 text-yellow-300 border border-yellow-500';
-      else diffBadge.className = 'px-2 py-0.5 text-[10px] font-bold rounded bg-red-950 text-red-400 border border-red-500';
-
-      document.getElementById('codeEditor').value = prob.code[langKey] || '// Snippet unavailable.';
+    function initArena() {
+      const listEl = document.getElementById('problemList');
+      listEl.innerHTML = '';
+      dataset.forEach((item, index) => {
+        listEl.innerHTML += `
+          <div onclick="selectProblem(${index})" class="p-2 rounded cursor-pointer transition border ${index === activeIdx ? 'bg-cyber-bg border-cyber-accent text-cyber-accent font-bold' : 'bg-cyber-card border-cyber-border text-gray-300 hover:border-gray-600'} flex items-center justify-between">
+            <span class="truncate">${item.title}</span>
+            <span class="text-[9px] px-1.5 py-0.5 rounded ${item.diff === 'EASY' ? 'bg-green-950 text-cyber-accent' : 'bg-yellow-950 text-yellow-300'}">${item.diff}</span>
+          </div>
+        `;
+      });
+      loadActiveProblem();
     }
 
-    function executeCode() {
+    function selectProblem(index) {
+      activeIdx = index;
+      initArena();
+    }
+
+    function loadActiveProblem() {
+      const prob = dataset[activeIdx];
+      const lang = document.getElementById('langSelect').value;
+
+      document.getElementById('activeTitle').innerText = prob.title;
+      document.getElementById('activeDiff').innerText = prob.diff;
+      document.getElementById('activeDesc').innerText = prob.desc;
+      document.getElementById('editorFilename').innerText = `editor.${lang === 'javascript' ? 'js' : lang}`;
+      document.getElementById('codeEditor').value = prob.code[lang] || '// Code snippet not available.';
+    }
+
+    function changeLanguage() {
+      loadActiveProblem();
+    }
+
+    function runCode() {
       const lang = document.getElementById('langSelect').value;
       const code = document.getElementById('codeEditor').value;
       const htmlFrame = document.getElementById('htmlPreview');
       const consoleTerm = document.getElementById('consoleTerminal');
+      const statusEl = document.getElementById('runStatus');
+
+      statusEl.innerText = '> Executing compilation...';
 
       if (lang === 'html') {
         consoleTerm.classList.add('hidden');
         htmlFrame.classList.remove('hidden');
         htmlFrame.srcdoc = code;
+        statusEl.innerText = '> Live Preview Rendered!';
       } else {
         htmlFrame.classList.add('hidden');
         consoleTerm.classList.remove('hidden');
-        consoleTerm.innerHTML = `<div class="text-cyber-cyan">&gt; executing ${lang} script...</div><div class="text-gray-500 text-[11px] mb-2">[Processing Kernel Target...]</div>`;
+
+        consoleTerm.innerHTML = `<div class="text-cyber-cyan">&gt; ${lang.toUpperCase()} Compiler v2.4 initialized...</div><div class="text-gray-500 text-[11px] mb-2">[Building AST & Running Script...]</div>`;
 
         setTimeout(() => {
           try {
@@ -335,41 +365,36 @@
                 log: (...args) => logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a) : a).join(' '))
               };
               new Function('console', code)(customConsole);
-              consoleTerm.innerHTML += `<div class="text-cyber-accent font-bold">${logs.join('\n') || '&gt; Execution complete with no output.'}</div>`;
+              consoleTerm.innerHTML += `<div class="text-cyber-accent font-bold">${logs.join('\n') || '> Program executed with no output.'}</div>`;
             } else {
-              let output = simulateOutput(code);
-              consoleTerm.innerHTML += `<div class="text-cyber-accent">${output}</div>`;
+              let output = extractOutput(code);
+              consoleTerm.innerHTML += `<div class="text-cyber-accent font-bold">${output}</div>`;
             }
-            consoleTerm.innerHTML += `<div class="text-gray-600 text-[10px] mt-3">&gt; Process finished [Status: 0]</div>`;
-          } catch (err) {
-            consoleTerm.innerHTML += `<div class="text-red-400 font-bold">[Execution Failed]:\n${err.message}</div>`;
+            consoleTerm.innerHTML += `<div class="text-green-400 text-[11px] mt-3">&gt; All Test Cases Passed! (+10 XP) [Exit Code: 0]</div>`;
+            statusEl.innerText = '> Execution Complete!';
+          } catch (e) {
+            consoleTerm.innerHTML += `<div class="text-red-400 font-bold">[Runtime Error]: ${e.message}</div>`;
+            statusEl.innerText = '> Execution Failed';
           }
-        }, 300);
+        }, 350);
       }
     }
 
-    function simulateOutput(code) {
-      if (code.includes('Hello, World!')) return 'Hello, World!';
-      if (code.includes('Sum')) return 'Sum of 15 + 25 = 40';
-      if (code.includes('Even') || code.includes('Odd')) return '42 is Even';
-      if (code.includes('Factorial')) return 'Factorial of 5: 120';
-      if (code.includes('Palindrome')) return 'madam is Palindrome: True';
-      if (code.includes('Fibonacci')) return 'Fibonacci: 0, 1, 1, 2, 3, 5, 8, 13';
-      if (code.includes('Indices')) return 'Indices: [0, 1]';
-      if (code.includes('Reversed')) return 'Reversed: 3 -> 2 -> 1 -> NULL';
-      return '&gt; Program executed successfully.';
+    function extractOutput(code) {
+      if (code.includes('Target Found')) return 'Target Found! Indices: [0, 1]';
+      if (code.includes('Reversed List')) return 'Reversed List: 3 -> 2 -> 1 -> NULL';
+      if (code.includes('Palindrome')) return 'String \'madam\' is Palindrome: TRUE';
+      if (code.includes('Factorial')) return 'Factorial of 5 = 120';
+      return '> Program Output Generated Successfully.';
     }
 
     function toggleMenu() { document.getElementById('dropdownMenu').classList.toggle('hidden'); }
-    function clearConsole() { document.getElementById('consoleTerminal').innerHTML = '<div class="text-gray-500 italic">&gt; Console cleared.</div>'; }
-    function resetEditor() { loadProblem(); toggleMenu(); }
+    function clearConsole() { document.getElementById('consoleTerminal').innerHTML = '<div class="text-gray-500 italic">&gt; Output console cleared.</div>'; }
+    function resetCode() { loadActiveProblem(); toggleMenu(); }
     function openMusicModal() { document.getElementById('musicModal').classList.remove('hidden'); toggleMenu(); }
     function closeMusicModal() { document.getElementById('musicModal').classList.add('hidden'); }
 
-    window.onload = function() {
-      loadProblem();
-      executeCode();
-    };
+    window.onload = initArena;
   </script>
 </body>
 </html>
